@@ -11,10 +11,12 @@ Tools used:
 
 - Java 8
 - Apache MetaModel - An excellent all persistent type meta query interface [http://metamodel.apache.org/](http://metamodel.apache.org/ "http://metamodel.apache.org/")
-- Rapidoid - An Awesome Java Microframework. It is actually  quite a full featured framework.
+- Rapidoid - An Awesome full featured Java lightweight web application framework.[http://www.rapidoid.org/](http://www.rapidoid.org "http://www.rapidoid.org")
+- JTwig [http://jtwig.org/](http://www.jtwig.org "http://www.jtwig.org") 
 
 
 Goals
 ------------------
-- To be able to generate a basic SparkJava web application
-- (LATER) Generic enough to allow generation for frameworks in other languages like Iris (Go), Laravel (PHP) through the usage of a framework template engine
+- To be able to generate a basic SparkJava and Laravel web application with more coming soon
+
+- Generic enough to allow generation for frameworks in other languages like Iris (Go), Laravel (PHP) through the usage of a framework template engine
