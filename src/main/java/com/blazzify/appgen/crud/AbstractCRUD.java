@@ -3,17 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.blazzify.appgen;
+package com.blazzify.appgen.crud;
 
 /**
  *
  * @author azzuwan
  */
-import org.rapidoid.setup.App;
-
-public class Main {
-    public static void main(String[] args) {
-        App.bootstrap(args);
-        
-    }
+public class AbstractCRUD {
+    
+    
 }
