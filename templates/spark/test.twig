@@ -1,0 +1,16 @@
+import static spark.Spark.*;
+
+public class HelloWorld {
+    public static void main(String[] args) {
+        get("/hello", (req, res) -> "Hello World");
+
+        {% for table in tables %}
+
+        get("/{{table.name}}", (req,res) -> "Generated Route {{table.name}}");
+        
+        {% endfor %}
+
+        
+    }
+}
+
