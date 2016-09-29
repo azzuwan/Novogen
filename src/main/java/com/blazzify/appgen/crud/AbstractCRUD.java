@@ -11,5 +11,6 @@ package com.blazzify.appgen.crud;
  */
 public class AbstractCRUD {
     
+    //T  findAll()
     
 }
