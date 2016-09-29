@@ -11,7 +11,6 @@ Tools used:
 
 - Java 8
 - Apache MetaModel - An excellent all persistent type meta query interface [http://metamodel.apache.org/](http://metamodel.apache.org/ "http://metamodel.apache.org/")
-- Rapidoid - An Awesome full featured Java lightweight web application framework.[http://www.rapidoid.org/](http://www.rapidoid.org "http://www.rapidoid.org")
 - JTwig [http://jtwig.org/](http://www.jtwig.org "http://www.jtwig.org") 
 
 
