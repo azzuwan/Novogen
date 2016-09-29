@@ -9,12 +9,19 @@ package com.blazzify.appgen;
  *
  * @author azzuwan
  */
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.apache.metamodel.DataContext;
 import org.apache.metamodel.DataContextFactory;
 import org.apache.metamodel.schema.Column;
@@ -26,6 +33,10 @@ import org.jtwig.JtwigTemplate;
 public class SparkGenerator {
 
     public static void main(String[] args) throws SQLException {
+        
+        //Get current execution path
+        final String dir =  System.getProperty("user.dir");
+        
 
         // DB infos
         String host = args[0];
@@ -62,7 +73,6 @@ public class SparkGenerator {
                     for (Column column : columns) {
                         System.out.println("        Column: " + column.getName());
                     }
-
                 }
             }
 
@@ -70,10 +80,18 @@ public class SparkGenerator {
 
         System.out.println("table list: " + tableList.size());
         JtwigTemplate template = JtwigTemplate.fileTemplate("/home/azzuwan/Projects/Tempoyak/tempoyak/templates/spark/test.twig");
-
+        
         JtwigModel model = JtwigModel.newModel().with("tables", tableList);
-
-        template.render(model, System.out);
+        
+        
+        File file = new File("../Generated/SparkJava/server.java");
+        FileOutputStream fos = null;
+        try {
+            fos = new FileOutputStream(file);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(SparkGenerator.class.getName()).log(Level.SEVERE, null, ex);
+        }                
+        template.render(model, fos );
     }
 
 }
