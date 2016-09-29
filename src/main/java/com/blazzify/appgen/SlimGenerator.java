@@ -5,13 +5,14 @@
  */
 package com.blazzify.appgen;
 
-/**
- *
- * @author azzuwan
- */
+
+import com.google.gson.Gson;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -27,24 +28,38 @@ import org.apache.metamodel.schema.Schema;
 import org.apache.metamodel.schema.Table;
 import org.jtwig.JtwigModel;
 import org.jtwig.JtwigTemplate;
+import com.blazzify.appgen.model.Project;
+import com.blazzify.appgen.model.Database;
+import java.nio.file.Path;
 
-public class SparkGenerator {
-
-    public static void main(String[] args) throws SQLException {
-        
+/**
+ *
+ * @author azzuwan
+ */
+public class SlimGenerator {
+    public static void main(String[] args) throws SQLException, IOException {
         //Get current execution path
         final String dir =  System.getProperty("user.dir");
+        System.out.println("Excuting in directory: " + dir);
+        String configPath = args[0];        
+        Gson gson = new Gson();        
+        String json = new String(Files.readAllBytes(Paths.get(configPath)));
+        System.out.println(json);        
         
-
-        // DB infos
-        String host = args[0];
-        String db = args[1];
-        String user = args[2];
-        String pass = args[3];        
-
-        //DOESNT WORK ON NEW MYSQL DRIVER
-        // Using Mysql Connector 5+
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/" + db + "?user=" + user + "&password=" + pass);
+        Project project = gson.fromJson(json, Project.class);        
+        Database database =  project.getDatabase();
+        String projectName = project.getProjectName();
+        String projectPath = project.getProjectDir();
+        String projectLanguage = project.getLanguage();                
+        String generatedPath = "../projects/" + projectLanguage + "/" + projectName;
+        
+        
+        String host = database.getHost();
+        String db = database.getSchema();
+        String user = database.getUser();
+        String pass = database.getPassword();
+        
+        Connection conn = DriverManager.getConnection("jdbc:mysql://"+host+"/" + db + "?user=" + user + "&password=" + pass);
         DataContext dataContext = DataContextFactory.createJdbcDataContext(conn);
 
         List<Schema> schemaList = new ArrayList<>();
@@ -77,13 +92,17 @@ public class SparkGenerator {
         }
 
         System.out.println("table list: " + tableList.size());
-        JtwigTemplate template = JtwigTemplate.fileTemplate("/home/azzuwan/Projects/Tempoyak/tempoyak/templates/spark/test.twig");
         
+        JtwigTemplate template = JtwigTemplate.fileTemplate(dir + "/templates/slim/test.twig");
         JtwigModel model = JtwigModel.newModel().with("tables", tableList);
         
-        
-        File file = new File("../Generated/SparkJava/server.java");
+        String fullGenerationPath = generatedPath + "/server.php";
+        System.out.println("Full generation path: " + fullGenerationPath);
+        Path path = Paths.get(fullGenerationPath);        
+        Files.createDirectories(path.getParent());        
+        File file = new File(fullGenerationPath);
         FileOutputStream fos = null;
+        
         try {
             fos = new FileOutputStream(file);
         } catch (FileNotFoundException ex) {
@@ -91,5 +110,4 @@ public class SparkGenerator {
         }                
         template.render(model, fos );
     }
-
 }
