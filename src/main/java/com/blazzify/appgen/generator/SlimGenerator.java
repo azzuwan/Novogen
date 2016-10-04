@@ -5,6 +5,7 @@
  */
 package com.blazzify.appgen.generator;
 
+import com.blazzify.appgen.connection.ConnectionFactory;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -52,7 +53,7 @@ public class SlimGenerator implements Generator {
             String user = database.getUser();
             String pass = database.getPassword();
             
-            Connection conn = DriverManager.getConnection("jdbc:mysql://" + host + "/" + db + "?user=" + user + "&password=" + pass);
+            Connection conn = ConnectionFactory.create(database);
             DataContext dataContext = DataContextFactory.createJdbcDataContext(conn);
             
             List<Schema> schemaList = new ArrayList<>();
@@ -87,7 +88,7 @@ public class SlimGenerator implements Generator {
             
             CodeWriter cw = new CodeWriter(this.project, tableList);
             cw.write();
-        } catch (IOException | SQLException ex) {
+        } catch (IOException ex) {
             Logger.getLogger(SlimGenerator.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

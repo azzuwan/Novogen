@@ -14,6 +14,7 @@ public class Database {
     private String schema = null;
     private String user = null;
     private String password = null;
+    private String type = null;
 
     /**
      * @return the host
@@ -69,6 +70,20 @@ public class Database {
      */
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    /**
+     * @return the type
+     */
+    public String getType() {
+        return type;
+    }
+
+    /**
+     * @param type the type to set
+     */
+    public void setType(String type) {
+        this.type = type;
     }
     
 }

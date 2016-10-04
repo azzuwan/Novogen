@@ -9,10 +9,10 @@ package com.blazzify.appgen.generator;
  *
  * @author azzuwan
  */
+import com.blazzify.appgen.connection.ConnectionFactory;
 import com.blazzify.appgen.writer.CodeWriter;
 import com.blazzify.appgen.model.Database;
 import com.blazzify.appgen.model.Project;
-import com.blazzify.appgen.cli.CommandHandler;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -52,7 +52,7 @@ public class SparkGenerator implements Generator {
             String pass = database.getPassword();
             
             //TODO: Change to a connection factory
-            Connection conn = DriverManager.getConnection("jdbc:mysql://" + host + "/" + db + "?user=" + user + "&password=" + pass);
+            Connection conn = ConnectionFactory.create(database);
             DataContext dataContext = DataContextFactory.createJdbcDataContext(conn);
             
             List<Schema> schemaList = new ArrayList<>();
@@ -86,7 +86,7 @@ public class SparkGenerator implements Generator {
             System.out.println("table list: " + tableList.size());
             CodeWriter cw = new CodeWriter(this.project, tableList);
             cw.write();
-        } catch (SQLException | IOException ex) {
+        } catch (IOException ex) {
             Logger.getLogger(SparkGenerator.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

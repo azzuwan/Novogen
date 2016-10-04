@@ -17,7 +17,7 @@ import java.util.logging.Logger;
  *
  * @author azzuwan
  */
-public class CommandHandler {
+public class Cli {
 
     private Project project;
 
@@ -25,7 +25,7 @@ public class CommandHandler {
      * 
      * @param config_file The JSON project config file
      */
-    public CommandHandler(String[] args) {
+    public Cli(String[] args) {
         if (args.length < 1) {
             System.out.println("Usage: gen config_file");
         } else {
@@ -40,7 +40,7 @@ public class CommandHandler {
                 this.project = p;
 
             } catch (IOException ex) {
-                Logger.getLogger(CommandHandler.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Cli.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }

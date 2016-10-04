@@ -9,6 +9,7 @@
     "host" : "localhost",
     "schema" : "employees",
     "user"  : "root",
-    "password" : "Reddoor74"
+    "password" : "Reddoor74",
+     "type" : "mysql"
   }
 }

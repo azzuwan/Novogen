@@ -32,7 +32,8 @@ public class GeneratorFactory {
                 generator = new ExpressGenerator(project);
                 break;
                 
-        
+            default:
+                throw new UnsupportedOperationException("Framework " + framework + "not supported yet");
         }
         
         return generator;

@@ -19,7 +19,7 @@
             <configuration>
               <transformers>
                 <transformer>
-                  <mainClass>com.blazzify.appgen.SparkGenerator</mainClass>
+                  <mainClass>com.blazzify.appgen.Main</mainClass>
                 </transformer>
               </transformers>
             </configuration>
