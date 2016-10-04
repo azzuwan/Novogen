@@ -12,7 +12,7 @@ package com.blazzify.appgen.model;
 public class Project {
     
     private String projectName = null;
-    private String projectDir = null;
+    private String projectPath = null;
     private String language = null;
     private String orm = null;
     private Database database = null;
@@ -74,16 +74,16 @@ public class Project {
     }
 
     /**
-     * @return the projectDir
+     * @return the projectPath
      */
-    public String getProjectDir() {
-        return projectDir;
+    public String getProjectPath() {
+        return projectPath;
     }
 
     /**
-     * @param projectDir the projectDir to set
+     * @param projectPath the projectPath to set
      */
-    public void setProjectDir(String projectDir) {
-        this.projectDir = projectDir;
+    public void setProjectPath(String projectPath) {
+        this.projectPath = projectPath;
     }
 }

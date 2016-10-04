@@ -49,9 +49,9 @@ public class SlimGenerator {
         Project project = gson.fromJson(json, Project.class);        
         Database database =  project.getDatabase();
         String projectName = project.getProjectName();
-        String projectPath = project.getProjectDir();
+        String projectPath = project.getProjectPath();
         String projectLanguage = project.getLanguage();                
-        String generatedPath = "../projects/" + projectLanguage + "/" + projectName;
+        String generatedPath = dir + "/projects/" + projectLanguage + "/" + projectName;
         
         
         String host = database.getHost();
@@ -93,10 +93,10 @@ public class SlimGenerator {
 
         System.out.println("table list: " + tableList.size());
         
-        JtwigTemplate template = JtwigTemplate.fileTemplate(dir + "/templates/slim/test.twig");
+        JtwigTemplate template = JtwigTemplate.fileTemplate(dir + "/templates/spark/test.twig");
         JtwigModel model = JtwigModel.newModel().with("tables", tableList);
         
-        String fullGenerationPath = generatedPath + "/server.php";
+        String fullGenerationPath = generatedPath + "/server.java";
         System.out.println("Full generation path: " + fullGenerationPath);
         Path path = Paths.get(fullGenerationPath);        
         Files.createDirectories(path.getParent());        
