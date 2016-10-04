@@ -12,24 +12,24 @@ import com.blazzify.appgen.model.Project;
  * @author azzuwan
  */
 public class GeneratorFactory {
-    public static Generator generate(Project project){
+    public static Generator createGenerator(Project project){
         String framework = project.getFramework();
         Generator generator = null;
         switch (framework.toLowerCase()){
             case "spark":
-                generator = new SparkGenerator();
+                generator = new SparkGenerator(project);
                 break;
                 
             case "slim":                
-                generator = new SlimGenerator();
+                generator = new SlimGenerator(project);
                 break;
                 
             case "laravel":
-                generator = new LaravelGenerator();
+                generator = new LaravelGenerator(project);
                 break;
                 
             case "express":
-                generator = new ExpressGenerator();
+                generator = new ExpressGenerator(project);
                 break;
                 
         

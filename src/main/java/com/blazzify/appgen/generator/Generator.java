@@ -12,5 +12,5 @@ import com.blazzify.appgen.model.Project;
  * @author azzuwan
  */
 public interface Generator {
-    public void generate(Project project);
+    public void generate();
 }

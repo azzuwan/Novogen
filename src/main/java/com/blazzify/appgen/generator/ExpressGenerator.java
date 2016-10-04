@@ -12,13 +12,29 @@ import com.blazzify.appgen.model.Project;
  * @author azzuwan
  */
 class ExpressGenerator implements Generator {
+    private Project project;
 
-    public ExpressGenerator() {
+    public ExpressGenerator(Project project) {
+        this.project = project;
     }
 
     @Override
-    public void generate(Project project) {
+    public void generate() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    /**
+     * @return the project
+     */
+    public Project getProject() {
+        return project;
+    }
+
+    /**
+     * @param project the project to set
+     */
+    public void setProject(Project project) {
+        this.project = project;
     }
     
 }

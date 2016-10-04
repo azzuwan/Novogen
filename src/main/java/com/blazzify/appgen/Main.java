@@ -6,6 +6,8 @@
 package com.blazzify.appgen;
 
 import com.blazzify.appgen.cli.CommandHandler;
+import com.blazzify.appgen.generator.Generator;
+import com.blazzify.appgen.generator.GeneratorFactory;
 import com.blazzify.appgen.model.Project;
 
 /**
@@ -15,8 +17,13 @@ import com.blazzify.appgen.model.Project;
 public class Main {
     
     public static void main(String[] args) {
+         
+        final String dir = System.getProperty("user.dir");        
+        System.out.println("Excuting in directory: " + dir);
         CommandHandler cli  = new CommandHandler(args);        
-        Project project = cli.getProject();
+        Project project = cli.getProject();        
+        Generator gen  = GeneratorFactory.createGenerator(project);
+        gen.generate();
         
     }
 

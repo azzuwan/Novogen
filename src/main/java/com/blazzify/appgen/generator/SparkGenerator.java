@@ -29,30 +29,22 @@ import org.apache.metamodel.schema.Schema;
 import org.apache.metamodel.schema.Table;
 
 public class SparkGenerator implements Generator {
-
-    public static void main(String[] args) throws SQLException, IOException {
-        
-        SparkGenerator gen = new SparkGenerator();
-        //Get current execution path
-        final String dir = System.getProperty("user.dir");
-        System.out.println("Excuting in directory: " + dir);
-
-        CommandHandler cli = new CommandHandler(args);
-        Project project = cli.getProject();
-        gen.generate(project);
+    private Project project;
+    public SparkGenerator(Project project) {
+        this.project = project;
     }
-
+   
     @Override
-    public void generate(Project project) {
+    public void generate() {
         try {
             //Get current execution path
             final String dir = System.getProperty("user.dir");
             System.out.println("Excuting in directory: " + dir);
             
-            Database database = project.getDatabase();
-            String projectName = project.getName();
-            String projectPath = project.getPath();
-            String language = project.getLanguage();
+            Database database = this.project.getDatabase();
+            String projectName = this.project.getName();
+            String projectPath = this.project.getPath();
+            String language = this.project.getLanguage();
             
             String host = database.getHost();
             String db = database.getSchema();
@@ -92,11 +84,25 @@ public class SparkGenerator implements Generator {
             }
             
             System.out.println("table list: " + tableList.size());
-            CodeWriter cw = new CodeWriter(project, tableList);
+            CodeWriter cw = new CodeWriter(this.project, tableList);
             cw.write();
         } catch (SQLException | IOException ex) {
             Logger.getLogger(SparkGenerator.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    /**
+     * @return the project
+     */
+    public Project getProject() {
+        return project;
+    }
+
+    /**
+     * @param project the project to set
+     */
+    public void setProject(Project project) {
+        this.project = project;
     }
 
 }
