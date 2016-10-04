@@ -14,6 +14,7 @@ public class Project {
     private String name = null;
     private String path = null;
     private String language = null;
+    private String framework = null;
     private String orm = null;
     private Database database = null;
 
@@ -85,5 +86,19 @@ public class Project {
      */
     public void setPath(String path) {
         this.path = path;
+    }
+
+    /**
+     * @return the framework
+     */
+    public String getFramework() {
+        return framework;
+    }
+
+    /**
+     * @param framework the framework to set
+     */
+    public void setFramework(String framework) {
+        this.framework = framework;
     }
 }

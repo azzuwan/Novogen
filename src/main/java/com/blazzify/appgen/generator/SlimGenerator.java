@@ -36,7 +36,7 @@ import java.nio.file.Path;
  *
  * @author azzuwan
  */
-public class SlimGenerator {
+public class SlimGenerator implements Generator {
     public static void main(String[] args) throws SQLException, IOException {
         //Get current execution path
         final String dir =  System.getProperty("user.dir");
@@ -109,5 +109,10 @@ public class SlimGenerator {
             Logger.getLogger(SparkGenerator.class.getName()).log(Level.SEVERE, null, ex);
         }                
         template.render(model, fos );
+    }
+
+    @Override
+    public void generate(Project project) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

@@ -20,67 +20,83 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.apache.metamodel.DataContext;
 import org.apache.metamodel.DataContextFactory;
 import org.apache.metamodel.schema.Column;
 import org.apache.metamodel.schema.Schema;
 import org.apache.metamodel.schema.Table;
 
-public class SparkGenerator {
+public class SparkGenerator implements Generator {
 
     public static void main(String[] args) throws SQLException, IOException {
-
+        
+        SparkGenerator gen = new SparkGenerator();
         //Get current execution path
         final String dir = System.getProperty("user.dir");
         System.out.println("Excuting in directory: " + dir);
 
         CommandHandler cli = new CommandHandler(args);
         Project project = cli.getProject();
-        Database database = project.getDatabase();
-        String projectName = project.getName();
-        String projectPath = project.getPath();
-        String language = project.getLanguage();
+        gen.generate(project);
+    }
 
-        String host = database.getHost();
-        String db = database.getSchema();
-        String user = database.getUser();
-        String pass = database.getPassword();
-        
-        //TODO: Change to a connection factory 
-        Connection conn = DriverManager.getConnection("jdbc:mysql://" + host + "/" + db + "?user=" + user + "&password=" + pass);
-        DataContext dataContext = DataContextFactory.createJdbcDataContext(conn);
-
-        List<Schema> schemaList = new ArrayList<>();
-        List<Table> tableList = new ArrayList<>();
-        List<Column> columnList = new ArrayList<>();
-
-        //Traverse database
-        Schema[] schemas = dataContext.getSchemas();
-        schemaList = Arrays.asList(schemas);
-
-        for (Schema schema : schemas) {
-            System.out.println("Schema: " + schema.getName());
-
-            if (schema.getName().equals(db)) {
-
-                Table[] tables = schema.getTables();
-                tableList = Arrays.asList(tables);
-
-                for (Table table : tables) {
-                    System.out.println("    Table: " + table.getName());
-
-                    Column[] columns = table.getColumns();
-                    columnList = Arrays.asList(columns);
-                    for (Column column : columns) {
-                        System.out.println("        Column: " + column.getName());
+    @Override
+    public void generate(Project project) {
+        try {
+            //Get current execution path
+            final String dir = System.getProperty("user.dir");
+            System.out.println("Excuting in directory: " + dir);
+            
+            Database database = project.getDatabase();
+            String projectName = project.getName();
+            String projectPath = project.getPath();
+            String language = project.getLanguage();
+            
+            String host = database.getHost();
+            String db = database.getSchema();
+            String user = database.getUser();
+            String pass = database.getPassword();
+            
+            //TODO: Change to a connection factory
+            Connection conn = DriverManager.getConnection("jdbc:mysql://" + host + "/" + db + "?user=" + user + "&password=" + pass);
+            DataContext dataContext = DataContextFactory.createJdbcDataContext(conn);
+            
+            List<Schema> schemaList = new ArrayList<>();
+            List<Table> tableList = new ArrayList<>();
+            List<Column> columnList = new ArrayList<>();
+            
+            //Traverse database
+            Schema[] schemas = dataContext.getSchemas();
+            schemaList = Arrays.asList(schemas);
+            
+            for (Schema schema : schemas) {
+                System.out.println("Schema: " + schema.getName());
+                
+                if (schema.getName().equals(db)) {
+                    
+                    Table[] tables = schema.getTables();
+                    tableList = Arrays.asList(tables);
+                    
+                    for (Table table : tables) {
+                        System.out.println("    Table: " + table.getName());
+                        
+                        Column[] columns = table.getColumns();
+                        columnList = Arrays.asList(columns);
+                        for (Column column : columns) {
+                            System.out.println("        Column: " + column.getName());
+                        }
                     }
                 }
             }
+            
+            System.out.println("table list: " + tableList.size());
+            CodeWriter cw = new CodeWriter(project, tableList);
+            cw.write();
+        } catch (SQLException | IOException ex) {
+            Logger.getLogger(SparkGenerator.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-        System.out.println("table list: " + tableList.size());
-        CodeWriter cw = new CodeWriter(project, tableList);
-        cw.write();
     }
 
 }
