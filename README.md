@@ -3,7 +3,7 @@ Tempoyak AppGen
 
 Description
 ------------------
-An database application generator that scaffold a fully functioning application with CRUD pages and JSON API end points.
+A database application generator that scaffolds a fully functioning application with CRUD pages and JSON API end points.
 
 This is a database first development approach. The generator is supposed to figure out the database structure and create all the necessary user interface for it plus a rich set of JSON APis.
 
