@@ -3,14 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.blazzify.appgen;
+package com.blazzify.appgen.generator;
 
 /**
  *
  * @author azzuwan
  */
+import com.blazzify.appgen.writer.CodeWriter;
 import com.blazzify.appgen.model.Database;
 import com.blazzify.appgen.model.Project;
+import com.blazzify.appgen.cli.CommandHandler;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -35,9 +37,9 @@ public class SparkGenerator {
         CommandHandler cli = new CommandHandler(args);
         Project project = cli.getProject();
         Database database = project.getDatabase();
-        String projectName = project.getProjectName();
-        String projectPath = project.getProjectPath();
-        String projectLanguage = project.getLanguage();
+        String projectName = project.getName();
+        String projectPath = project.getPath();
+        String language = project.getLanguage();
 
         String host = database.getHost();
         String db = database.getSchema();

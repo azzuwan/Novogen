@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.blazzify.appgen;
+package com.blazzify.appgen.generator;
 
 
 import com.google.gson.Gson;
@@ -48,8 +48,8 @@ public class SlimGenerator {
         
         Project project = gson.fromJson(json, Project.class);        
         Database database =  project.getDatabase();
-        String projectName = project.getProjectName();
-        String projectPath = project.getProjectPath();
+        String projectName = project.getName();
+        String projectPath = project.getPath();
         String projectLanguage = project.getLanguage();                
         String generatedPath = dir + "/projects/" + projectLanguage + "/" + projectName;
         

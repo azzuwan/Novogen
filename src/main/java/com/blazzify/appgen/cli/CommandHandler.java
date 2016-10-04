@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.blazzify.appgen;
+package com.blazzify.appgen.cli;
 
 import com.blazzify.appgen.model.Project;
 import com.google.gson.Gson;
@@ -17,7 +17,7 @@ import java.util.logging.Logger;
  *
  * @author azzuwan
  */
-class CommandHandler {
+public class CommandHandler {
 
     private Project project;
 
@@ -25,7 +25,7 @@ class CommandHandler {
      * 
      * @param config_file The JSON project config file
      */
-    CommandHandler(String[] args) {
+    public CommandHandler(String[] args) {
         if (args.length < 1) {
             System.out.println("Usage: gen config_file");
         } else {

@@ -5,6 +5,7 @@
  */
 package com.blazzify.appgen;
 
+import com.blazzify.appgen.cli.CommandHandler;
 import com.blazzify.appgen.model.Project;
 
 /**
@@ -12,8 +13,6 @@ import com.blazzify.appgen.model.Project;
  * @author azzuwan
  */
 public class Main {
-    
-    
     
     public static void main(String[] args) {
         CommandHandler cli  = new CommandHandler(args);        

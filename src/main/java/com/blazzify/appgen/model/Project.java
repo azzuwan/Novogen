@@ -11,24 +11,24 @@ package com.blazzify.appgen.model;
  */
 public class Project {
     
-    private String projectName = null;
-    private String projectPath = null;
+    private String name = null;
+    private String path = null;
     private String language = null;
     private String orm = null;
     private Database database = null;
 
     /**
-     * @return the projectName
+     * @return the name
      */
-    public String getProjectName() {
-        return projectName;
+    public String getName() {
+        return name;
     }
 
     /**
-     * @param projectName the projectName to set
+     * @param name the name to set
      */
-    public void setProjectName(String projectName) {
-        this.projectName = projectName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     /**
@@ -74,16 +74,16 @@ public class Project {
     }
 
     /**
-     * @return the projectPath
+     * @return the path
      */
-    public String getProjectPath() {
-        return projectPath;
+    public String getPath() {
+        return path;
     }
 
     /**
-     * @param projectPath the projectPath to set
+     * @param path the path to set
      */
-    public void setProjectPath(String projectPath) {
-        this.projectPath = projectPath;
+    public void setPath(String path) {
+        this.path = path;
     }
 }

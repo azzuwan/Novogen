@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.blazzify.appgen;
+package com.blazzify.appgen.writer;
 
+import com.blazzify.appgen.generator.SparkGenerator;
 import com.blazzify.appgen.model.Project;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -38,7 +39,7 @@ public class CodeWriter {
         final String dir = System.getProperty("user.dir");
         JtwigTemplate template = JtwigTemplate.fileTemplate(dir + "/templates/spark/test.twig");
         JtwigModel model = JtwigModel.newModel().with("tables", getTables());
-        String generatedPath = project.getProjectPath() + "/projects/" + getProject().getLanguage() + "/" + getProject().getProjectName();
+        String generatedPath = project.getPath() + "/projects/" + getProject().getLanguage() + "/" + getProject().getName();
         String indexFile = generatedPath + "/server.java";
         System.out.println("Full generation path: " + indexFile);
         Path path = Paths.get(indexFile);
