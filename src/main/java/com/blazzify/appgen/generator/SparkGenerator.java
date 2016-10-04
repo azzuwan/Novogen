@@ -41,17 +41,8 @@ public class SparkGenerator implements Generator {
             final String dir = System.getProperty("user.dir");
             System.out.println("Excuting in directory: " + dir);
             
-            Database database = this.project.getDatabase();
-            String projectName = this.project.getName();
-            String projectPath = this.project.getPath();
-            String language = this.project.getLanguage();
-            
-            String host = database.getHost();
-            String db = database.getSchema();
-            String user = database.getUser();
-            String pass = database.getPassword();
-            
-            //TODO: Change to a connection factory
+            Database database = this.project.getDatabase();           
+            String db = database.getSchema();            
             Connection conn = ConnectionFactory.create(database);
             DataContext dataContext = DataContextFactory.createJdbcDataContext(conn);
             

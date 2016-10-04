@@ -8,8 +8,6 @@ package com.blazzify.appgen.generator;
 import com.blazzify.appgen.connection.ConnectionFactory;
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -29,7 +27,6 @@ import com.blazzify.appgen.writer.CodeWriter;
  * @author azzuwan
  */
 public class SlimGenerator implements Generator {
-
     private Project project;
 
     public SlimGenerator(Project project) {
@@ -43,15 +40,8 @@ public class SlimGenerator implements Generator {
             final String dir = System.getProperty("user.dir");
             System.out.println("Excuting in directory: " + dir);
             
-            Database database = this.project.getDatabase();
-            String projectName = this.project.getName();
-            String projectPath = this.project.getPath();
-            String language = this.project.getLanguage();
-            
-            String host = database.getHost();
-            String db = database.getSchema();
-            String user = database.getUser();
-            String pass = database.getPassword();
+            Database database = this.project.getDatabase();           
+            String db = database.getSchema();           
             
             Connection conn = ConnectionFactory.create(database);
             DataContext dataContext = DataContextFactory.createJdbcDataContext(conn);
