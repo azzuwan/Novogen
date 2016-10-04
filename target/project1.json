@@ -1,6 +1,6 @@
 {
   "projectName" : "MyProject",
-  "ProjectDir" : "/home/azzuwan/Projects/Tempoyak",
+  "ProjectPath" : "/home/azzuwan/Projects/Tempoyak",
   "language" : "java",
   "framework" : "spark",
   "orm": "metamodel",

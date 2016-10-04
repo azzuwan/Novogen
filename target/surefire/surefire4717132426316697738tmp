@@ -1,0 +1,6 @@
+#surefire
+#Tue Oct 04 23:25:44 CST 2016
+maven.ext.class.path=/home/azzuwan/netbeans-8.1/java/maven-nblib/netbeans-eventspy.jar
+user.dir=/home/azzuwan/Projects/Tempoyak/tempoyak
+localRepository=/home/azzuwan/.m2/repository
+basedir=/home/azzuwan/Projects/Tempoyak/tempoyak
