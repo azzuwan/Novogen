@@ -5,8 +5,6 @@
  */
 package com.blazzify.appgen.generator;
 
-import com.blazzify.appgen.model.Project;
-
 /**
  *
  * @author azzuwan
