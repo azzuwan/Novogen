@@ -19,3 +19,21 @@ Goals
 - To be able to generate a basic SparkJava and Laravel web application with more coming soon
 
 - Generic enough to allow generation for frameworks in other languages like Iris (Go), Laravel (PHP) through the usage of a framework template engine
+
+Usage
+------------------
+- The Maven project will generate a gen.jar file in the target directory
+- The gen.jar needs to have:  1) the templates folder and 2) project.json in the same directory
+- Usage: java -jar gen.jar project.json
+
+Templates
+------------------
+- Example framework templates is included in the root directory of the repository
+- The data to be passed to the template will be standardized soon
+- The directory needs to be present in the same dir as the gen.jar executable file. 
+
+
+Generated Files
+------------------
+- The generated files is specified in the path key of the project.json
+- the generated files will be in /[path in json]/projects/[language]/project_name

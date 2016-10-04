@@ -37,7 +37,7 @@ public class CodeWriter {
     public void write() throws IOException {
 
         final String dir = System.getProperty("user.dir");
-        JtwigTemplate template = JtwigTemplate.fileTemplate(dir + "/templates/spark/test.twig");
+        JtwigTemplate template = JtwigTemplate.fileTemplate(dir + "/templates/java/spark/spark.twig");
         JtwigModel model = JtwigModel.newModel().with("tables", getTables());
         String generatedPath = project.getPath() + "/projects/" + getProject().getLanguage() + "/" + getProject().getName();
         String indexFile = generatedPath + "/server.java";

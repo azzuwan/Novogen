@@ -45,7 +45,8 @@ public class SparkGenerator {
         String db = database.getSchema();
         String user = database.getUser();
         String pass = database.getPassword();
-
+        
+        //TODO: Change to a connection factory 
         Connection conn = DriverManager.getConnection("jdbc:mysql://" + host + "/" + db + "?user=" + user + "&password=" + pass);
         DataContext dataContext = DataContextFactory.createJdbcDataContext(conn);
 
