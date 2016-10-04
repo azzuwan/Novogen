@@ -16,9 +16,8 @@ Tools used:
 
 Goals
 ------------------
-- To be able to generate a basic SparkJava and Laravel web application with more coming soon
-
-- Generic enough to allow generation for frameworks in other languages like Iris (Go), Laravel (PHP) through the usage of a framework template engine
+- To be able to generate a full fledge web application framework like Spark Java, Laravel, ExpressJS etc.
+- Generic enough to allow generation for more frameworks in other languages.
 
 Usage
 ------------------
@@ -36,4 +35,4 @@ Templates
 Generated Files
 ------------------
 - The generated files is specified in the path key of the project.json
-- the generated files will be in /[path in json]/projects/[language]/project_name
+- The generated files will be in /[path in json]/projects/[language]/project_name

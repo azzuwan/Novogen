@@ -1,0 +1,14 @@
+{
+  "name" : "BadProject",
+  "path" : "/home/azzuwan/Projects/Tempoyak",
+  "package" : "com.blazzify",
+  "language" : "java",  
+  "framework" : "spark",
+  "orm": "metamodel",
+  "database" : {
+    "host" : "localhost",
+    "schema" : "employees",
+    "user"  : "root",
+    "password" : "Reddoor74"
+  }
+}
