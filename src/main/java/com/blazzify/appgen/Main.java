@@ -6,7 +6,6 @@
 package com.blazzify.appgen;
 
 import com.blazzify.appgen.cli.Cli;
-import com.blazzify.appgen.generator.Generator;
 import com.blazzify.appgen.generator.GeneratorFactory;
 import com.blazzify.appgen.model.Project;
 
@@ -22,9 +21,7 @@ public class Main {
         System.out.println("Excuting in directory: " + dir);
         Cli cli  = new Cli(args);        
         Project project = cli.getProject();        
-        Generator gen  = GeneratorFactory.createGenerator(project);
-        gen.generate();
-        
+        GeneratorFactory.createGenerator(project).generate();        
     }
 
 }

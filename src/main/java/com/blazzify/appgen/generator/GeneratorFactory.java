@@ -16,6 +16,9 @@ public class GeneratorFactory {
         String framework = project.getFramework();
         Generator generator = null;
         switch (framework.toLowerCase()){
+            case "go":
+                generator = GoGenerator.getInstances();
+                break;
             case "spark":
                 generator = new SparkGenerator(project);
                 break;
