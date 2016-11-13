@@ -15,29 +15,30 @@ import java.util.logging.Logger;
  *
  * @author azzuwan
  */
-public class PostgresConnection implements DbConnection {
-    private static PostgresConnection instance = null;
+public class MariaDbConnection implements DbConnection {
+    
+    private static MariaDbConnection instance = null;
     private static Connection conn;
     private static String url;
-    protected PostgresConnection(){
+    protected MariaDbConnection(){
         try {
-            conn = DriverManager.getConnection(PostgresConnection.url);
+            conn = DriverManager.getConnection(MariaDbConnection.url);
         } catch (SQLException ex) {
             Logger.getLogger(MariaDbConnection.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
-    public static PostgresConnection getInstance(String url){
-        PostgresConnection.url = url;
-        if(instance == null){
-            instance = new PostgresConnection();
-        }
-        
+    public static MariaDbConnection getInstance(String url){
+        MariaDbConnection.url = url;
+        if(instance == null){            
+            instance = new MariaDbConnection();
+        }        
         return instance;
     }
+
     @Override
     public Connection getConnection() {
-        return PostgresConnection.conn;
+        return MariaDbConnection.conn;
     }
     
 }

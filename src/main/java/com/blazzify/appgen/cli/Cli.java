@@ -23,7 +23,7 @@ public class Cli {
 
     /**
      * 
-     * @param config_file The JSON project config file
+     * @param args     
      */
     public Cli(String[] args) {
         if (args.length < 1) {

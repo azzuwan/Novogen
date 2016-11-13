@@ -12,5 +12,10 @@ import java.sql.Connection;
  * @author azzuwan
  */
 public interface DbConnection {
+
+    /**
+     *
+     * @return Connection object
+     */
     public Connection getConnection();
 }

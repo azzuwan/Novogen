@@ -19,34 +19,28 @@ import java.util.logging.Logger;
 public class ConnectionFactory {
     public static Connection create(Database db){
         Connection conn = null;
-        String type = db.getType().toLowerCase();        
+        String type = db.getType().toLowerCase();
+        
+        String url = "jdbc:"+ db.getType().toLowerCase()+ "://"
+                    + db.getHost().toLowerCase()
+                    + "/" + db.getSchema().toLowerCase()
+                    + "?user=" + db.getUser().toLowerCase()
+                    + "&password=" + db.getPassword();
+        
         switch(type){
             case "mysql":
-                conn = sqlConnection(db);
+                conn = MysqlConnection.getInstance(url).getConnection();
                 break;
-                
+            case "mariadb":
+                conn = MariaDbConnection.getInstance(url).getConnection();
+                break;                
             case "postgresql":
-                conn = sqlConnection(db);
+                conn = PostgresConnection.getInstance(url).getConnection();
                 break;
                 
            default:
                throw new UnsupportedOperationException("The connection type is not supported yet");               
         }        
-        return conn;
-    }
-    
-    private static Connection sqlConnection(Database db){
-        Connection conn = null;
-        try {
-             conn = DriverManager.getConnection("jdbc:"+ db.getType().toLowerCase()+ "://"
-                    + db.getHost().toLowerCase()
-                    + "/" + db.getSchema().toLowerCase()
-                    + "?user=" + db.getUser().toLowerCase()
-                    + "&password=" + db.getPassword());            
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(ConnectionFactory.class.getName()).log(Level.SEVERE, null, ex);
-        }
         return conn;
     }
 }
