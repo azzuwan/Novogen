@@ -3,22 +3,26 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.blazzify.appgen.writer;
+package com.blazzify.gen.generator;
 
-import com.blazzify.appgen.model.Project;
+import com.blazzify.gen.model.Project;
 
 /**
  *
  * @author azzuwan
  */
-public class POMWriter {
+class LaravelGenerator implements Generator {
+    
     private Project project;
-
-    public POMWriter(Project project) {
+    public LaravelGenerator(Project project) {
         this.project = project;
     }
-    
-    
+
+    @Override
+    public void generate() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     /**
      * @return the project
      */
@@ -32,6 +36,5 @@ public class POMWriter {
     public void setProject(Project project) {
         this.project = project;
     }
-    
     
 }

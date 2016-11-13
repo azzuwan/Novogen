@@ -3,19 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.blazzify.appgen.connection;
-
-import java.sql.Connection;
+package com.blazzify.gen.framework;
 
 /**
  *
  * @author azzuwan
  */
-public interface DbConnection {
-
-    /**
-     *
-     * @return Connection object
-     */
-    public Connection getConnection();
+public class FrameworkFactory {
+    
 }

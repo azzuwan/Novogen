@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.blazzify.appgen.cli;
+package com.blazzify.gen.cli;
 
-import com.blazzify.appgen.model.Project;
+import com.blazzify.gen.model.Project;
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.nio.file.Files;

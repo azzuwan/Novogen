@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.blazzify.appgen.framework;
+package com.blazzify.gen.generator;
 
 /**
  *
  * @author azzuwan
  */
-public class FrameworkFactory {
-    
+public interface Generator {
+    public void generate();
 }

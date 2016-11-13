@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.blazzify.appgen.connection;
+package com.blazzify.gen.connection;
 
-import com.blazzify.appgen.model.Database;
+import com.blazzify.gen.model.Database;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;

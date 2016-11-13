@@ -3,18 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.blazzify.appgen.generator;
+package com.blazzify.gen.generator;
 
-import com.blazzify.appgen.model.Project;
+import com.blazzify.gen.model.Project;
 
 /**
  *
  * @author azzuwan
  */
-class LaravelGenerator implements Generator {
-    
+class ExpressGenerator implements Generator {
     private Project project;
-    public LaravelGenerator(Project project) {
+
+    public ExpressGenerator(Project project) {
         this.project = project;
     }
 

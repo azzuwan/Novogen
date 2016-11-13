@@ -2,3 +2,5 @@ target/
 out/
 test/
 projects/
+nb-configuration.xml
+nbactions.xml

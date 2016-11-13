@@ -3,18 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.blazzify.appgen.connection;
-
-import java.sql.Connection;
+package com.blazzify.gen.generator;
 
 /**
  *
  * @author azzuwan
  */
-public class MongoConnection implements DbConnection{
+class GoGenerator implements Generator{
+
+    public static Generator getInstances() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
     @Override
-    public Connection getConnection() {
+    public void generate() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

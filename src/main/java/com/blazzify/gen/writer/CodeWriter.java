@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.blazzify.appgen.writer;
+package com.blazzify.gen.writer;
 
-import com.blazzify.appgen.generator.SparkGenerator;
-import com.blazzify.appgen.model.Project;
+import com.blazzify.gen.generator.SparkGenerator;
+import com.blazzify.gen.model.Project;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;

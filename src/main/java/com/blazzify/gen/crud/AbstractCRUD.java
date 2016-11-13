@@ -3,12 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.blazzify.appgen.generator;
+package com.blazzify.gen.crud;
 
 /**
  *
  * @author azzuwan
  */
-public interface Generator {
-    public void generate();
+public class AbstractCRUD {
+    
+    //T  findAll()
+    
 }

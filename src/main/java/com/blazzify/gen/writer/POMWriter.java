@@ -3,26 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.blazzify.appgen.generator;
+package com.blazzify.gen.writer;
 
-import com.blazzify.appgen.model.Project;
+import com.blazzify.gen.model.Project;
 
 /**
  *
  * @author azzuwan
  */
-class ExpressGenerator implements Generator {
+public class POMWriter {
     private Project project;
 
-    public ExpressGenerator(Project project) {
+    public POMWriter(Project project) {
         this.project = project;
     }
-
-    @Override
-    public void generate() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
+    
+    
     /**
      * @return the project
      */
@@ -36,5 +32,6 @@ class ExpressGenerator implements Generator {
     public void setProject(Project project) {
         this.project = project;
     }
+    
     
 }

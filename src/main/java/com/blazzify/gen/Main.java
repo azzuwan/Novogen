@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.blazzify.appgen;
+package com.blazzify.gen;
 
-import com.blazzify.appgen.cli.Cli;
-import com.blazzify.appgen.generator.GeneratorFactory;
-import com.blazzify.appgen.model.Project;
+import com.blazzify.gen.cli.Cli;
+import com.blazzify.gen.generator.GeneratorFactory;
+import com.blazzify.gen.model.Project;
 
 /**
  *

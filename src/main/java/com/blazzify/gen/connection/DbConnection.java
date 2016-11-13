@@ -3,14 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.blazzify.appgen.crud;
+package com.blazzify.gen.connection;
+
+import java.sql.Connection;
 
 /**
  *
  * @author azzuwan
  */
-public class AbstractCRUD {
-    
-    //T  findAll()
-    
+public interface DbConnection {
+
+    /**
+     *
+     * @return Connection object
+     */
+    public Connection getConnection();
 }

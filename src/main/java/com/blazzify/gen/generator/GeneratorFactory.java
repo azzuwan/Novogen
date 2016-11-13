@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.blazzify.appgen.generator;
+package com.blazzify.gen.generator;
 
-import com.blazzify.appgen.model.Project;
+import com.blazzify.gen.model.Project;
 
 /**
  *

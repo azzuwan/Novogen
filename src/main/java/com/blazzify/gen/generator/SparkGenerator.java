@@ -3,16 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.blazzify.appgen.generator;
+package com.blazzify.gen.generator;
 
 /**
  *
  * @author azzuwan
  */
-import com.blazzify.appgen.connection.ConnectionFactory;
-import com.blazzify.appgen.writer.CodeWriter;
-import com.blazzify.appgen.model.Database;
-import com.blazzify.appgen.model.Project;
+import com.blazzify.gen.connection.ConnectionFactory;
+import com.blazzify.gen.writer.CodeWriter;
+import com.blazzify.gen.model.Database;
+import com.blazzify.gen.model.Project;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
