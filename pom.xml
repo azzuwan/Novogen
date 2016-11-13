@@ -21,7 +21,7 @@
                         <configuration>
                             <transformers>
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>com.blazzify.appgen.Main</mainClass>
+                                    <mainClass>com.blazzify.gen.Main</mainClass>
                                 </transformer>
                             </transformers>
                         </configuration>
@@ -38,16 +38,6 @@
     </repositories>
     
     <dependencies>
-        <dependency>
-            <groupId>org.apache.metamodel</groupId>
-            <artifactId>MetaModel-full</artifactId>
-            <version>4.5.4</version>
-        </dependency>
-        <dependency>
-            <groupId>org.rapidoid</groupId>
-            <artifactId>rapidoid-web</artifactId>
-            <version>5.2.4</version>
-        </dependency>
         <dependency>
             <groupId>org.apache.metamodel</groupId>
             <artifactId>MetaModel-core</artifactId>
@@ -83,6 +73,28 @@
             <groupId>org.apache.derby</groupId>
             <artifactId>derby</artifactId>
             <version>10.13.1.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.metamodel</groupId>
+            <artifactId>MetaModel-jdbc</artifactId>
+            <version>4.5.4</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.metamodel</groupId>
+            <artifactId>MetaModel</artifactId>
+            <version>4.5.4</version>
+            <type>pom</type>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.metamodel</groupId>
+            <artifactId>MetaModel-json</artifactId>
+            <version>4.5.4</version>
+        </dependency>
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>6.8.1</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
     <properties>

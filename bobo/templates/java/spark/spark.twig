@@ -1,0 +1,23 @@
+import static spark.Spark.*;
+
+public class HelloWorld {
+    public static void main(String[] args) {
+
+        get("/hello", (req, res) -> "Hello World");
+
+        {% for table in tables %}
+        get("/{{table.name}}", (req,res) -> "GET route for {{table.name}}"); 
+        
+        post("/{{table.name}}", (req,res) -> "POST route for {{table.name}}");
+        
+        put("/{{table.name}}/:id", (req,res) -> "PUT route for {{table.name}}");
+        
+        delete("/{{table.name}}/:id", (req,res) -> "DELETE route for {{table.name}}");
+        
+        options("/{{table.name}}", (req,res) -> "OPTIONS route for {{table.name}}");
+        {% endfor %}
+
+        
+    }
+}
+

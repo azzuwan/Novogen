@@ -7,7 +7,7 @@ package com.blazzify.gen.generator;
 
 /**
  *
- * @author azzuwan
+ * @author Azzuwan Aziz <azzuwan@gmail.com>
  */
 import com.blazzify.gen.connection.ConnectionFactory;
 import com.blazzify.gen.writer.CodeWriter;
@@ -23,7 +23,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.apache.metamodel.DataContext;
-import org.apache.metamodel.DataContextFactory;
+import org.apache.metamodel.jdbc.JdbcDataContext;
 import org.apache.metamodel.schema.Column;
 import org.apache.metamodel.schema.Schema;
 import org.apache.metamodel.schema.Table;
@@ -44,7 +44,7 @@ public class SparkGenerator implements Generator {
             Database database = this.project.getDatabase();           
             String db = database.getSchema();            
             Connection conn = ConnectionFactory.create(database);
-            DataContext dataContext = DataContextFactory.createJdbcDataContext(conn);
+            DataContext dataContext = new JdbcDataContext(conn);
             
             List<Schema> schemaList = new ArrayList<>();
             List<Table> tableList = new ArrayList<>();

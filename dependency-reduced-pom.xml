@@ -19,7 +19,7 @@
             <configuration>
               <transformers>
                 <transformer>
-                  <mainClass>com.blazzify.appgen.Main</mainClass>
+                  <mainClass>com.blazzify.gen.Main</mainClass>
                 </transformer>
               </transformers>
             </configuration>
@@ -34,6 +34,15 @@
       <url>https://jcenter.bintray.com/</url>
     </repository>
   </repositories>
+  <dependencies>
+    <dependency>
+      <groupId>org.apache.metamodel</groupId>
+      <artifactId>MetaModel</artifactId>
+      <version>4.5.4</version>
+      <type>pom</type>
+      <scope>compile</scope>
+    </dependency>
+  </dependencies>
   <properties>
     <maven.compiler.source>1.8</maven.compiler.source>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
