@@ -41,13 +41,13 @@ public class PostgresConnection implements DbConnection {
         try {
             conn = DriverManager.getConnection(PostgresConnection.url);
         } catch (SQLException ex) {
-            Logger.getLogger(MariaDbConnection.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PostgresConnection.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
-    public static PostgresConnection getInstance(String url){
-        PostgresConnection.url = url;
-        if(instance == null){
+    public static PostgresConnection getInstance(String url){        
+        if(instance == null || !PostgresConnection.url.equalsIgnoreCase(url)){
+            PostgresConnection.url = url;
             instance = new PostgresConnection();
         }
         

@@ -41,7 +41,7 @@ public class MysqlConnection implements DbConnection {
         try {
             MysqlConnection.conn = DriverManager.getConnection(MysqlConnection.url);
         } catch (SQLException ex) {
-            Logger.getLogger(MariaDbConnection.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MysqlConnection.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
