@@ -25,7 +25,7 @@ package com.blazzify.gen;
 
 import com.blazzify.gen.cli.Cli;
 import com.blazzify.gen.generator.GeneratorFactory;
-import com.blazzify.gen.model.SparkProject;
+import com.blazzify.gen.project.Project;
 
 /**
  *
@@ -38,7 +38,7 @@ public class Main {
         final String dir = System.getProperty("user.dir");        
         System.out.println("Excuting in directory: " + dir);
         Cli cli  = new Cli(args);        
-        SparkProject project = cli.getProject();        
+        Project project = cli.getProject();        
         GeneratorFactory.createGenerator(project).generate();        
     }
 
