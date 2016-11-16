@@ -23,7 +23,7 @@
  */
 package com.blazzify.gen.connection;
 
-import com.blazzify.gen.model.Database;
+import com.blazzify.gen.db.Database;
 import java.sql.Connection;
 
 /**
