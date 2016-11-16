@@ -23,8 +23,6 @@
  */
 package com.blazzify.gen.connection;
 
-import com.mysql.jdbc.CommunicationsException;
-import java.net.ConnectException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
