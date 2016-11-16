@@ -23,34 +23,31 @@
  */
 package com.blazzify.gen.generator;
 
-import com.blazzify.gen.model.SparkProject;
+import com.blazzify.gen.project.ExpressProject;
+import com.blazzify.gen.project.GoProject;
+import com.blazzify.gen.project.Project;
+import com.blazzify.gen.project.SparkProject;
 
 /**
  *
  * @author Azzuwan Aziz <azzuwan@gmail.com>
  */
 public class GeneratorFactory {
-    public static Generator createGenerator(SparkProject project){
+    public static Generator createGenerator(Project project){
         String framework = project.getFramework();
         Generator generator = null;
         switch (framework.toLowerCase()){
+            
             case "go":
-                generator = new GoGenerator(project);
+                generator = new DefaultGenerator<>((GoProject) project);
                 break;
+                
             case "spark":
-                generator = new SparkGenerator(project);
-                break;
-                
-            case "slim":                
-                generator = new SlimGenerator(project);
-                break;
-                
-            case "laravel":
-                generator = new LaravelGenerator(project);
+                generator = new DefaultGenerator<>((SparkProject) project);
                 break;
                 
             case "express":
-                generator = new ExpressGenerator(project);
+                generator = new DefaultGenerator<>((ExpressProject) project);
                 break;
                 
             default:
