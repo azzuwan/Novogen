@@ -24,8 +24,8 @@
 package com.blazzify.gen.generator;
 
 import com.blazzify.gen.connection.ConnectionFactory;
-import com.blazzify.gen.model.Database;
-import com.blazzify.gen.model.Project;
+import com.blazzify.gen.db.Database;
+import com.blazzify.gen.project.Project;
 import com.blazzify.gen.writer.Writer;
 import com.blazzify.gen.writer.WriterFactory;
 import java.io.IOException;
@@ -45,11 +45,13 @@ import org.apache.metamodel.schema.Table;
  *
  * @author Azzuwan Aziz <azzuwan@gmail.com>
  */
-public class DefaultGenerator<T extends Generator, P extends Project> implements Generator{
+public class DefaultGenerator<P extends Project> implements Generator{
     private P project;
+    
     public DefaultGenerator(P project){
         this.project = project;
     }
+    
     @Override
     public void generate() {
         try {
@@ -94,7 +96,7 @@ public class DefaultGenerator<T extends Generator, P extends Project> implements
             Writer writer = WriterFactory.createWriter(this.project, tableList);
             writer.write();
         } catch (IOException ex) {
-            Logger.getLogger(SparkGenerator.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DefaultGenerator.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
