@@ -24,32 +24,22 @@
 package com.blazzify.gen.writer;
 
 import com.blazzify.gen.model.Project;
+import java.io.IOException;
+import java.util.List;
+import org.apache.metamodel.schema.Table;
 
 /**
  *
  * @author Azzuwan Aziz <azzuwan@gmail.com>
  */
-public class POMWriter {
-    private Project project;
+public class GoWriter implements Writer {
 
-    public POMWriter(Project project) {
-        this.project = project;
-    }
-    
-    
-    /**
-     * @return the project
-     */
-    public Project getProject() {
-        return project;
+    public GoWriter(Project project, List<Table> tables) {
     }
 
-    /**
-     * @param project the project to set
-     */
-    public void setProject(Project project) {
-        this.project = project;
+    @Override
+    public void write() throws IOException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
     
 }

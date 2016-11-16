@@ -10,7 +10,7 @@ package com.blazzify.gen.generator;
  * @author Azzuwan Aziz <azzuwan@gmail.com>
  */
 import com.blazzify.gen.connection.ConnectionFactory;
-import com.blazzify.gen.writer.CodeWriter;
+import com.blazzify.gen.writer.SparkWriter;
 import com.blazzify.gen.model.Database;
 import com.blazzify.gen.model.Project;
 import java.io.IOException;
@@ -75,7 +75,7 @@ public class SparkGenerator implements Generator {
             }
             
             System.out.println("table list: " + tableList.size());
-            CodeWriter cw = new CodeWriter(this.project, tableList);
+            SparkWriter cw = new SparkWriter(this.project, tableList);
             cw.write();
         } catch (IOException ex) {
             Logger.getLogger(SparkGenerator.class.getName()).log(Level.SEVERE, null, ex);

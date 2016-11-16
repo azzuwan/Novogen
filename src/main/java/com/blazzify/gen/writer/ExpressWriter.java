@@ -21,24 +21,24 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.blazzify.gen.generator;
+package com.blazzify.gen.writer;
 
 import com.blazzify.gen.model.Project;
+import java.io.IOException;
+import java.util.List;
+import org.apache.metamodel.schema.Table;
 
 /**
  *
  * @author Azzuwan Aziz <azzuwan@gmail.com>
  */
-class GoGenerator implements Generator{
+public class ExpressWriter implements Writer {
 
-    Project project;
-
-    public GoGenerator(Project project) {
-        this.project = project;
+    public ExpressWriter(Project project, List<Table> tables) {
     }
 
     @Override
-    public void generate() {
+    public void write() throws IOException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

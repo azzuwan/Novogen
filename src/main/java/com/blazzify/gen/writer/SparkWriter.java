@@ -43,15 +43,20 @@ import org.jtwig.JtwigTemplate;
  *
  * @author Azzuwan Aziz <azzuwan@gmail.com>
  */
-public class CodeWriter {
+public class SparkWriter implements Writer{
     private Project project;   
     private List<Table> tables;
 
-    public CodeWriter(Project project, List<Table> tables) {
+    public SparkWriter(Project project, List<Table> tables) {
         this.project = project;
         this.tables = tables;
     }
 
+    /**
+     *
+     * @throws IOException
+     */
+    @Override
     public void write() throws IOException {
 
         final String dir = System.getProperty("user.dir");

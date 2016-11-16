@@ -1,10 +1,10 @@
 {
-  "name" : "BadProject",
+  "name" : "GolangTest",
   "path" : "/home/azzuwan/Projects/Tempoyak-Gen",
   "package" : "com.blazzify",
-  "language" : "java",  
-  "framework" : "spark",
-  "orm": "metamodel",
+  "language" : "go",  
+  "framework" : "go",
+  "orm": "upper.io",
   "database" : {
     "host" : "localhost",
     "schema" : "employees",

@@ -21,25 +21,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.blazzify.gen.generator;
-
-import com.blazzify.gen.model.Project;
+package com.blazzify.gen.exceptions;
 
 /**
  *
  * @author Azzuwan Aziz <azzuwan@gmail.com>
  */
-class GoGenerator implements Generator{
-
-    Project project;
-
-    public GoGenerator(Project project) {
-        this.project = project;
+public class WriterNotSupportedException extends Exception{
+    
+    public WriterNotSupportedException(String message) {
+        super(message);
     }
-
-    @Override
-    public void generate() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
     
 }

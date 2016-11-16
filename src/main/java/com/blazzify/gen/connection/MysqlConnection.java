@@ -23,6 +23,8 @@
  */
 package com.blazzify.gen.connection;
 
+import com.mysql.jdbc.CommunicationsException;
+import java.net.ConnectException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -40,7 +42,8 @@ public class MysqlConnection implements DbConnection {
     protected MysqlConnection(){
         try {
             MysqlConnection.conn = DriverManager.getConnection(MysqlConnection.url);
-        } catch (SQLException ex) {
+        } catch (SQLException ex){            
+            System.out.println("Mysql Error: Cannot connect to Mysql instance. Is the database server running?");
             Logger.getLogger(MysqlConnection.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

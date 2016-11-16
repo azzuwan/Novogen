@@ -20,7 +20,7 @@ import org.apache.metamodel.schema.Schema;
 import org.apache.metamodel.schema.Table;
 import com.blazzify.gen.model.Project;
 import com.blazzify.gen.model.Database;
-import com.blazzify.gen.writer.CodeWriter;
+import com.blazzify.gen.writer.SparkWriter;
 
 /**
  *
@@ -76,7 +76,7 @@ public class SlimGenerator implements Generator {
 
             System.out.println("table list: " + tableList.size());
             
-            CodeWriter cw = new CodeWriter(this.project, tableList);
+            SparkWriter cw = new SparkWriter(this.project, tableList);
             cw.write();
         } catch (IOException ex) {
             Logger.getLogger(SlimGenerator.class.getName()).log(Level.SEVERE, null, ex);

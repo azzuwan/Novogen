@@ -21,25 +21,38 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.blazzify.gen.generator;
+package com.blazzify.gen.writer;
 
 import com.blazzify.gen.model.Project;
+import java.util.List;
+import org.apache.metamodel.schema.Table;
 
 /**
  *
  * @author Azzuwan Aziz <azzuwan@gmail.com>
  */
-class GoGenerator implements Generator{
-
-    Project project;
-
-    public GoGenerator(Project project) {
-        this.project = project;
+public class WriterFactory {
+    public static Writer createWriter(Project project, List<Table> tables){
+        Writer writer = null;
+        String framework = project.getFramework();
+        switch(framework){
+            
+            case "spark":
+                writer = new SparkWriter(project, tables);
+                break;
+                
+            case "go":
+                writer = new GoWriter(project, tables);
+                break;
+                
+            case "express":
+                writer = new ExpressWriter(project, tables);
+                
+            default:
+                throw new UnsupportedOperationException("Code writer for "+ framework+" is not supported yet.");                
+                
+        }
+        
+        return writer;
     }
-
-    @Override
-    public void generate() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
 }

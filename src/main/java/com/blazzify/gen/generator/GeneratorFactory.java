@@ -35,7 +35,7 @@ public class GeneratorFactory {
         Generator generator = null;
         switch (framework.toLowerCase()){
             case "go":
-                generator = GoGenerator.getInstances();
+                generator = new GoGenerator(project);
                 break;
             case "spark":
                 generator = new SparkGenerator(project);
