@@ -23,10 +23,10 @@
  */
 package com.blazzify.gen.writer;
 
-import com.blazzify.gen.model.ExpressProject;
-import com.blazzify.gen.model.GoProject;
-import com.blazzify.gen.model.Project;
-import com.blazzify.gen.model.SparkProject;
+import com.blazzify.gen.project.ExpressProject;
+import com.blazzify.gen.project.GoProject;
+import com.blazzify.gen.project.Project;
+import com.blazzify.gen.project.SparkProject;
 import java.util.List;
 import org.apache.metamodel.schema.Table;
 
@@ -41,15 +41,15 @@ public class WriterFactory {
         switch(framework){
             
             case "spark":
-                writer = new DefaultWriter<SparkProject>((SparkProject) project, tables);
+                writer = new DefaultWriter<>((SparkProject) project, tables);
                 break;
                 
             case "go":
-                writer = new DefaultWriter<GoProject>((GoProject) project, tables);
+                writer = new DefaultWriter<>((GoProject) project, tables);
                 break;
                 
             case "express":
-                writer = new DefaultWriter<ExpressProject>((ExpressProject) project, tables);
+                writer = new DefaultWriter<>((ExpressProject) project, tables);
                 
             default:
                 throw new UnsupportedOperationException("Code writer for "+ framework+" is not supported yet.");                
