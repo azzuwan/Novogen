@@ -53,7 +53,7 @@ public class Cli {
      * 
      * @param args     
      */
-    public Cli(String[] args) throws FrameworkNotSupportedExecption {
+    public Cli(String[] args) {
         if (args.length < 1) {
             System.out.println("Usage: gen config_file");
         } else {
@@ -90,6 +90,8 @@ public class Cli {
 
             } catch (IOException ex) {
                 Logger.getLogger(Cli.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (FrameworkNotSupportedExecption ex) {
+                System.out.println("Framework: specified in project.json is not yet supported");                
             }
         }
     }
