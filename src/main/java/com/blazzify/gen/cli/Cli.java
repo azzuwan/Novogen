@@ -104,7 +104,7 @@ public class Cli {
     }
 
     /**
-     * @param projectConfig the project to set
+     * @param project     
      */
     public void setProject(Project project) {
         this.project = project;

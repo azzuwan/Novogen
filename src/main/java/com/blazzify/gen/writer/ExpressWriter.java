@@ -21,38 +21,26 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.blazzify.gen.generator;
+package com.blazzify.gen.writer;
 
-import com.blazzify.gen.model.SparkProject;
+import com.blazzify.gen.project.Project;
+import java.io.IOException;
+import java.util.List;
+import org.apache.metamodel.schema.Table;
 
 /**
  *
  * @author Azzuwan Aziz <azzuwan@gmail.com>
  */
-class LaravelGenerator implements Generator {
-    
-    private SparkProject project;
-    public LaravelGenerator(SparkProject project) {
-        this.project = project;
-    }
+public class ExpressWriter implements Writer{
 
-    @Override
-    public void generate() {
+    ExpressWriter(Project project, List<Table> tables) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    /**
-     * @return the project
-     */
-    public SparkProject getProject() {
-        return project;
-    }
-
-    /**
-     * @param project the project to set
-     */
-    public void setProject(SparkProject project) {
-        this.project = project;
+    @Override
+    public void write() throws IOException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

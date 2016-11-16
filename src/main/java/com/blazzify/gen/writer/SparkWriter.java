@@ -21,17 +21,26 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.blazzify.gen.exceptions;
+package com.blazzify.gen.writer;
+
+import com.blazzify.gen.project.Project;
+import java.io.IOException;
+import java.util.List;
+import org.apache.metamodel.schema.Table;
 
 /**
  *
  * @author Azzuwan Aziz <azzuwan@gmail.com>
  */
-public class WriterNotSupportedException extends Exception{
-    
-    public WriterNotSupportedException(String message) {
-        super(message);
+public class SparkWriter implements Writer{
+
+    SparkWriter(Project project, List<Table> tables) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
+    @Override
+    public void write() throws IOException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }
