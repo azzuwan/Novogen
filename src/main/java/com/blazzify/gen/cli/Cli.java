@@ -23,13 +23,23 @@
  */
 package com.blazzify.gen.cli;
 
-import com.blazzify.gen.model.SparkProject;
+import com.blazzify.gen.exception.FrameworkNotSupportedExecption;
+import com.blazzify.gen.project.ExpressProject;
+import com.blazzify.gen.project.GoProject;
+import com.blazzify.gen.project.Project;
+import com.blazzify.gen.project.SparkProject;
 import com.google.gson.Gson;
+import com.google.gson.JsonElement;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import com.google.gson.reflect.TypeToken;
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.Map;
+import javax.naming.OperationNotSupportedException;
 
 /**
  *
@@ -37,13 +47,13 @@ import java.util.logging.Logger;
  */
 public class Cli {
 
-    private SparkProject project;
+    private Project project;
 
     /**
      * 
      * @param args     
      */
-    public Cli(String[] args) {
+    public Cli(String[] args) throws FrameworkNotSupportedExecption {
         if (args.length < 1) {
             System.out.println("Usage: gen config_file");
         } else {
@@ -53,9 +63,30 @@ public class Cli {
                 Gson gson = new Gson();
                 String json = new String(Files.readAllBytes(Paths.get(configPath)));
                 System.out.println(json);
-
-                SparkProject p = gson.fromJson(json, SparkProject.class);
-                this.project = p;
+                
+                Type mapType = new TypeToken<Map<String, String>>(){}.getType();
+                HashMap<String, String> map = gson.fromJson(json, mapType);                
+                String framework = map.get("framework").toLowerCase();
+                JsonElement elem = gson.toJsonTree(map);
+                
+                switch(framework){
+                    
+                    case "spark":                        
+                        project = gson.fromJson(elem, SparkProject.class);
+                        break;
+                        
+                    case "go":                        
+                        project = gson.fromJson(elem, GoProject.class);
+                        break;
+                        
+                    case "express":
+                        project = gson.fromJson(elem, ExpressProject.class);
+                        break;
+                        
+                    default:
+                        throw new FrameworkNotSupportedExecption("Framework: "+framework+ " specified in project.json is not yet supported");
+                }
+                
 
             } catch (IOException ex) {
                 Logger.getLogger(Cli.class.getName()).log(Level.SEVERE, null, ex);
@@ -66,14 +97,14 @@ public class Cli {
     /**
      * @return the project
      */
-    public SparkProject getProject() {
+    public Project getProject() {
         return project;
     }
 
     /**
      * @param projectConfig the project to set
      */
-    public void setProject(SparkProject project) {
+    public void setProject(Project project) {
         this.project = project;
     }
 
