@@ -23,14 +23,14 @@
  */
 package com.blazzify.gen.generator;
 
-import com.blazzify.gen.model.Project;
+import com.blazzify.gen.model.SparkProject;
 
 /**
  *
  * @author Azzuwan Aziz <azzuwan@gmail.com>
  */
 public class GeneratorFactory {
-    public static Generator createGenerator(Project project){
+    public static Generator createGenerator(SparkProject project){
         String framework = project.getFramework();
         Generator generator = null;
         switch (framework.toLowerCase()){

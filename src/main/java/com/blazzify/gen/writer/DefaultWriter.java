@@ -24,6 +24,7 @@
 package com.blazzify.gen.writer;
 
 import com.blazzify.gen.model.Project;
+import com.blazzify.gen.model.SparkProject;
 import java.io.IOException;
 import java.util.List;
 import org.apache.metamodel.schema.Table;
@@ -32,11 +33,15 @@ import org.apache.metamodel.schema.Table;
  *
  * @author Azzuwan Aziz <azzuwan@gmail.com>
  */
-public class GoWriter implements Writer {
-
-    public GoWriter(Project project, List<Table> tables) {
+public class DefaultWriter<P extends Project> implements Writer{
+    private P project;   
+    private List<Table> tables;
+    
+    public DefaultWriter(P project, List<Table> tables) {
+        this.project = project;
+        this.tables = tables;
     }
-
+     
     @Override
     public void write() throws IOException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

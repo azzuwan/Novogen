@@ -1,11 +1,33 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * The MIT License
+ *
+ * Copyright 2016 Azzuwan Aziz <azzuwan@gmail.com>.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
  */
 package com.blazzify.gen.generator;
 
 import com.blazzify.gen.connection.ConnectionFactory;
+import com.blazzify.gen.model.Database;
+import com.blazzify.gen.model.Project;
+import com.blazzify.gen.writer.Writer;
+import com.blazzify.gen.writer.WriterFactory;
 import java.io.IOException;
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -18,21 +40,16 @@ import org.apache.metamodel.jdbc.JdbcDataContext;
 import org.apache.metamodel.schema.Column;
 import org.apache.metamodel.schema.Schema;
 import org.apache.metamodel.schema.Table;
-import com.blazzify.gen.model.SparkProject;
-import com.blazzify.gen.model.Database;
-import com.blazzify.gen.writer.SparkWriter;
 
 /**
  *
  * @author Azzuwan Aziz <azzuwan@gmail.com>
  */
-public class SlimGenerator implements Generator {
-    private SparkProject project;
-
-    public SlimGenerator(SparkProject project) {
+public class DefaultGenerator<T extends Generator, P extends Project> implements Generator{
+    private P project;
+    public DefaultGenerator(P project){
         this.project = project;
     }
-
     @Override
     public void generate() {
         try {
@@ -41,8 +58,7 @@ public class SlimGenerator implements Generator {
             System.out.println("Excuting in directory: " + dir);
             
             Database database = this.project.getDatabase();           
-            String db = database.getSchema();           
-            
+            String db = database.getSchema();            
             Connection conn = ConnectionFactory.create(database);
             DataContext dataContext = new JdbcDataContext(conn);
             
@@ -71,29 +87,15 @@ public class SlimGenerator implements Generator {
                             System.out.println("        Column: " + column.getName());
                         }
                     }
-                }                
+                }
             }
-
-            System.out.println("table list: " + tableList.size());
             
-            SparkWriter cw = new SparkWriter(this.project, tableList);
-            cw.write();
+            System.out.println("table list: " + tableList.size());
+            Writer writer = WriterFactory.createWriter(this.project, tableList);
+            writer.write();
         } catch (IOException ex) {
-            Logger.getLogger(SlimGenerator.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SparkGenerator.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
-    /**
-     * @return the project
-     */
-    public SparkProject getProject() {
-        return project;
-    }
-
-    /**
-     * @param project the project to set
-     */
-    public void setProject(SparkProject project) {
-        this.project = project;
-    }
+    
 }

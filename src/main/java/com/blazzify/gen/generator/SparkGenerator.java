@@ -10,13 +10,12 @@ package com.blazzify.gen.generator;
  * @author Azzuwan Aziz <azzuwan@gmail.com>
  */
 import com.blazzify.gen.connection.ConnectionFactory;
-import com.blazzify.gen.writer.SparkWriter;
 import com.blazzify.gen.model.Database;
-import com.blazzify.gen.model.Project;
+import com.blazzify.gen.model.SparkProject;
+import com.blazzify.gen.writer.Writer;
+import com.blazzify.gen.writer.WriterFactory;
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -29,8 +28,8 @@ import org.apache.metamodel.schema.Schema;
 import org.apache.metamodel.schema.Table;
 
 public class SparkGenerator implements Generator {
-    private Project project;
-    public SparkGenerator(Project project) {
+    private SparkProject project;
+    public SparkGenerator(SparkProject project) {
         this.project = project;
     }
    
@@ -75,8 +74,8 @@ public class SparkGenerator implements Generator {
             }
             
             System.out.println("table list: " + tableList.size());
-            SparkWriter cw = new SparkWriter(this.project, tableList);
-            cw.write();
+            Writer writer = WriterFactory.createWriter(this.project, tableList);
+            writer.write();
         } catch (IOException ex) {
             Logger.getLogger(SparkGenerator.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -85,14 +84,14 @@ public class SparkGenerator implements Generator {
     /**
      * @return the project
      */
-    public Project getProject() {
+    public SparkProject getProject() {
         return project;
     }
 
     /**
      * @param project the project to set
      */
-    public void setProject(Project project) {
+    public void setProject(SparkProject project) {
         this.project = project;
     }
 

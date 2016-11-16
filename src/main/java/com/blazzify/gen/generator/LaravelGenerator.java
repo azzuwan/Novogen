@@ -23,7 +23,7 @@
  */
 package com.blazzify.gen.generator;
 
-import com.blazzify.gen.model.Project;
+import com.blazzify.gen.model.SparkProject;
 
 /**
  *
@@ -31,8 +31,8 @@ import com.blazzify.gen.model.Project;
  */
 class LaravelGenerator implements Generator {
     
-    private Project project;
-    public LaravelGenerator(Project project) {
+    private SparkProject project;
+    public LaravelGenerator(SparkProject project) {
         this.project = project;
     }
 
@@ -44,14 +44,14 @@ class LaravelGenerator implements Generator {
     /**
      * @return the project
      */
-    public Project getProject() {
+    public SparkProject getProject() {
         return project;
     }
 
     /**
      * @param project the project to set
      */
-    public void setProject(Project project) {
+    public void setProject(SparkProject project) {
         this.project = project;
     }
     

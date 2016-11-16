@@ -23,7 +23,23 @@
  */
 package com.blazzify.gen.generator;
 
-import com.blazzify.gen.model.Project;
+import com.blazzify.gen.connection.ConnectionFactory;
+import com.blazzify.gen.model.Database;
+import com.blazzify.gen.model.SparkProject;
+import com.blazzify.gen.writer.Writer;
+import com.blazzify.gen.writer.WriterFactory;
+import java.io.IOException;
+import java.sql.Connection;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.apache.metamodel.DataContext;
+import org.apache.metamodel.jdbc.JdbcDataContext;
+import org.apache.metamodel.schema.Column;
+import org.apache.metamodel.schema.Schema;
+import org.apache.metamodel.schema.Table;
 
 /**
  *
@@ -31,15 +47,58 @@ import com.blazzify.gen.model.Project;
  */
 class GoGenerator implements Generator{
 
-    Project project;
+    SparkProject project;
 
-    public GoGenerator(Project project) {
+    public GoGenerator(SparkProject project) {
         this.project = project;
     }
 
     @Override
     public void generate() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         try {
+            //Get current execution path
+            final String dir = System.getProperty("user.dir");
+            System.out.println("Excuting in directory: " + dir);
+            
+            Database database = this.project.getDatabase();           
+            String db = database.getSchema();            
+            Connection conn = ConnectionFactory.create(database);
+            DataContext dataContext = new JdbcDataContext(conn);
+            
+            List<Schema> schemaList = new ArrayList<>();
+            List<Table> tableList = new ArrayList<>();
+            List<Column> columnList = new ArrayList<>();
+            
+            //Traverse database
+            Schema[] schemas = dataContext.getSchemas();
+            schemaList = Arrays.asList(schemas);
+            
+            for (Schema schema : schemas) {
+                System.out.println("Schema: " + schema.getName());
+                
+                if (schema.getName().equals(db)) {
+                    
+                    Table[] tables = schema.getTables();
+                    tableList = Arrays.asList(tables);
+                    
+                    for (Table table : tables) {
+                        System.out.println("    Table: " + table.getName());
+                        
+                        Column[] columns = table.getColumns();
+                        columnList = Arrays.asList(columns);
+                        for (Column column : columns) {
+                            System.out.println("        Column: " + column.getName());
+                        }
+                    }
+                }
+            }
+            
+            System.out.println("table list: " + tableList.size());
+            Writer writer = WriterFactory.createWriter(this.project, tableList);
+            writer.write();
+        } catch (IOException ex) {
+            Logger.getLogger(GoGenerator.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
 }

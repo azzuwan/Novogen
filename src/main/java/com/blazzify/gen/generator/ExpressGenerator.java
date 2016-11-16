@@ -23,16 +23,16 @@
  */
 package com.blazzify.gen.generator;
 
-import com.blazzify.gen.model.Project;
+import com.blazzify.gen.model.SparkProject;
 
 /**
  *
  * @author Azzuwan Aziz <azzuwan@gmail.com>
  */
 class ExpressGenerator implements Generator {
-    private Project project;
+    private SparkProject project;
 
-    public ExpressGenerator(Project project) {
+    public ExpressGenerator(SparkProject project) {
         this.project = project;
     }
 
@@ -44,14 +44,14 @@ class ExpressGenerator implements Generator {
     /**
      * @return the project
      */
-    public Project getProject() {
+    public SparkProject getProject() {
         return project;
     }
 
     /**
      * @param project the project to set
      */
-    public void setProject(Project project) {
+    public void setProject(SparkProject project) {
         this.project = project;
     }
     

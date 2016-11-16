@@ -23,7 +23,7 @@
  */
 package com.blazzify.gen.cli;
 
-import com.blazzify.gen.model.Project;
+import com.blazzify.gen.model.SparkProject;
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -37,7 +37,7 @@ import java.util.logging.Logger;
  */
 public class Cli {
 
-    private Project project;
+    private SparkProject project;
 
     /**
      * 
@@ -54,7 +54,7 @@ public class Cli {
                 String json = new String(Files.readAllBytes(Paths.get(configPath)));
                 System.out.println(json);
 
-                Project p = gson.fromJson(json, Project.class);
+                SparkProject p = gson.fromJson(json, SparkProject.class);
                 this.project = p;
 
             } catch (IOException ex) {
@@ -66,14 +66,14 @@ public class Cli {
     /**
      * @return the project
      */
-    public Project getProject() {
+    public SparkProject getProject() {
         return project;
     }
 
     /**
      * @param projectConfig the project to set
      */
-    public void setProject(Project project) {
+    public void setProject(SparkProject project) {
         this.project = project;
     }
 
