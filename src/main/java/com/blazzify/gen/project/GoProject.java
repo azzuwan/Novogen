@@ -35,7 +35,7 @@ public class GoProject implements Project{
     private String language;
     private String framework;
     private String orm;
-    private Database Database;
+    private Database database;
 
     public GoProject(String name, String path, String language, String framework, String orm, Database Database) {
         this.name = name;
@@ -43,7 +43,7 @@ public class GoProject implements Project{
         this.language = language;
         this.framework = framework;
         this.orm = orm;
-        this.Database = Database;
+        this.database = Database;
     }
 
     @Override
@@ -98,12 +98,12 @@ public class GoProject implements Project{
 
     @Override
     public Database getDatabase() {
-        return Database;
+        return database;
     }
 
     @Override
     public void setDatabase(Database Database) {
-        this.Database = Database;
+        this.database = Database;
     }
     
     
