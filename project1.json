@@ -1,9 +1,9 @@
 {
-  "name" : "GoProj",
+  "name" : "BadProject",
   "path" : "/home/azzuwan/Projects/Tempoyak-Gen",
   "package" : "com.blazzify",
-  "language" : "go",  
-  "framework" : "nethttp",
+  "language" : "java",  
+  "framework" : "spark",
   "orm": "metamodel",
   "database" : {
     "host" : "localhost",
