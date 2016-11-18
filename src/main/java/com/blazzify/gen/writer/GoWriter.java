@@ -70,9 +70,10 @@ public class GoWriter implements Writer{
 
     @Override
     public void write() throws IOException {
-        final String dir = System.getProperty("user.dir");
         
-        JtwigTemplate template = JtwigTemplate.fileTemplate(dir + "/templates/go/nethttp/server.go");
+        
+        JtwigTemplate indexTemplate = JtwigTemplate.classpathTemplate("templates/go/nethttp/server.go");
+        JtwigTemplate dbTemplate = JtwigTemplate.classpathTemplate("templates/go/nethttp/db.go");
         JtwigModel model = JtwigModel.newModel().with("tables", getTables());
         
         String generatedPath = project.getPath() + "/" + getProject().getName();
@@ -95,11 +96,12 @@ public class GoWriter implements Writer{
 
         try {
             indexStream = new FileOutputStream(indexFile);
+            dbStream = new FileOutputStream(dbFile);
         } catch (FileNotFoundException ex) {
             Logger.getLogger(DefaultWriter.class.getName()).log(Level.SEVERE, null, ex);
         }
-        template.render(model, indexStream);
-        template.render(model, dbStream);
+        indexTemplate.render(model, indexStream);
+        dbTemplate.render(model, dbStream);
     }
     
 }
