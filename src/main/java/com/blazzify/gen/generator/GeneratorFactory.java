@@ -38,7 +38,7 @@ public class GeneratorFactory {
         Generator generator = null;
         switch (framework.toLowerCase()){
             
-            case "go":
+            case "nethttp":
                 generator = new DefaultGenerator<>((GoProject) project);
                 break;
                 
