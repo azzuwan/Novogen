@@ -68,8 +68,7 @@ public class SparkWriter implements Writer{
     }
 
     @Override
-    public void write() throws IOException {
-        final String dir = System.getProperty("user.dir");        
+    public void write() throws IOException {                
         JtwigTemplate template = JtwigTemplate.classpathTemplate("templates/java/spark/spark.twig");        
         JtwigModel model = JtwigModel.newModel().with("tables", getTables());
         String generatedPath = project.getPath() + "/" + getProject().getName();
