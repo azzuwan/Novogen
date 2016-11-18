@@ -29,17 +29,12 @@ import com.blazzify.gen.project.GoProject;
 import com.blazzify.gen.project.Project;
 import com.blazzify.gen.project.SparkProject;
 import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import com.jayway.jsonpath.JsonPath;
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import com.google.gson.reflect.TypeToken;
-import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.Map;
-import javax.naming.OperationNotSupportedException;
 
 /**
  *
@@ -63,24 +58,20 @@ public class Cli {
                 Gson gson = new Gson();
                 String json = new String(Files.readAllBytes(Paths.get(configPath)));
                 System.out.println(json);
-                
-                Type mapType = new TypeToken<Map<String, Object>>(){}.getType();
-                Map<String, String> map = gson.fromJson(json, mapType);                
-                String framework = map.get("framework").toLowerCase();
-                JsonElement elem = gson.toJsonTree(map);
+                String framework = JsonPath.read(json, "$.framework");
                 
                 switch(framework){
                     
                     case "spark":                        
-                        project = gson.fromJson(elem, SparkProject.class);
+                        project = gson.fromJson(json, SparkProject.class);
                         break;
                         
-                    case "go":                        
-                        project = gson.fromJson(elem, GoProject.class);
+                    case "nethttp":                        
+                        project = gson.fromJson(json, GoProject.class);
                         break;
                         
                     case "express":
-                        project = gson.fromJson(elem, ExpressProject.class);
+                        project = gson.fromJson(json, ExpressProject.class);
                         break;
                         
                     default:
