@@ -64,8 +64,8 @@ public class Cli {
                 String json = new String(Files.readAllBytes(Paths.get(configPath)));
                 System.out.println(json);
                 
-                Type mapType = new TypeToken<Map<String, String>>(){}.getType();
-                HashMap<String, String> map = gson.fromJson(json, mapType);                
+                Type mapType = new TypeToken<Map<String, Object>>(){}.getType();
+                Map<String, String> map = gson.fromJson(json, mapType);                
                 String framework = map.get("framework").toLowerCase();
                 JsonElement elem = gson.toJsonTree(map);
                 
