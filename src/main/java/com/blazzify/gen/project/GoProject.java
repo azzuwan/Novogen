@@ -30,65 +30,83 @@ import com.blazzify.gen.db.Database;
  * @author Azzuwan Aziz <azzuwan@gmail.com>
  */
 public class GoProject implements Project{
+    private String name;
+    private String path;
+    private String language;
+    private String framework;
+    private String orm;
+    private Database Database;
 
-    @Override
-    public Database getDatabase() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public String getFramework() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public String getLanguage() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public GoProject(String name, String path, String language, String framework, String orm, Database Database) {
+        this.name = name;
+        this.path = path;
+        this.language = language;
+        this.framework = framework;
+        this.orm = orm;
+        this.Database = Database;
     }
 
     @Override
     public String getName() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public String getOrm() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public String getPath() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void setDatabase(Database database) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void setFramework(String framework) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void setLanguage(String language) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return name;
     }
 
     @Override
     public void setName(String name) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.name = name;
     }
 
     @Override
-    public void setOrm(String orm) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public String getPath() {
+        return path;
     }
 
     @Override
     public void setPath(String path) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.path = path;
     }
+
+    @Override
+    public String getLanguage() {
+        return language;
+    }
+
+    @Override
+    public void setLanguage(String language) {
+        this.language = language;
+    }
+
+    @Override
+    public String getFramework() {
+        return framework;
+    }
+
+    @Override
+    public void setFramework(String framework) {
+        this.framework = framework;
+    }
+
+    @Override
+    public String getOrm() {
+        return orm;
+    }
+
+    @Override
+    public void setOrm(String orm) {
+        this.orm = orm;
+    }
+
+    @Override
+    public Database getDatabase() {
+        return Database;
+    }
+
+    @Override
+    public void setDatabase(Database Database) {
+        this.Database = Database;
+    }
+    
+    
+
     
 }
