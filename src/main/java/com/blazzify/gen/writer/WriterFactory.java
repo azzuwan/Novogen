@@ -23,7 +23,6 @@
  */
 package com.blazzify.gen.writer;
 
-import com.blazzify.gen.project.ExpressProject;
 import com.blazzify.gen.project.Project;
 import java.util.List;
 import org.apache.metamodel.schema.Table;
@@ -42,7 +41,7 @@ public class WriterFactory {
                 writer = new SparkWriter(project, tables);
                 break;
                 
-            case "go":
+            case "nethttp":
                 writer = new GoWriter(project, tables);
                 break;
                 
