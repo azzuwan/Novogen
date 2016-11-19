@@ -23,6 +23,7 @@
  */
 package com.blazzify.gen.writer;
 
+import com.blazzify.gen.project.ExpressProject;
 import com.blazzify.gen.project.Project;
 import java.io.IOException;
 import java.util.List;
@@ -32,15 +33,15 @@ import org.apache.metamodel.schema.Table;
  *
  * @author Azzuwan Aziz <azzuwan@gmail.com>
  */
-public class ExpressWriter implements Writer{
-
+public class ExpressWriter extends AbstractWriter{
     ExpressWriter(Project project, List<Table> tables) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.project = (ExpressProject) project;
+        this.tables = tables;
     }
-
     @Override
     public void write() throws IOException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
     
 }
