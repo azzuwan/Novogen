@@ -21,10 +21,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.blazzify.gen.writer;
+package com.blazzify.gen.writer.java;
 
-import com.blazzify.gen.project.GoProject;
 import com.blazzify.gen.project.Project;
+import com.blazzify.gen.writer.AbstractWriter;
 import java.io.IOException;
 import java.util.List;
 import org.apache.metamodel.schema.Table;
@@ -35,24 +35,20 @@ import org.jtwig.JtwigTemplate;
  *
  * @author Azzuwan Aziz <azzuwan@gmail.com>
  */
-public class NetHttpWriter extends AbstractWriter{
-    NetHttpWriter(Project project, List<Table> tables) {
-        this.project = (GoProject) project;
+public class SparkWriter extends AbstractWriter{
+
+    public SparkWriter(Project project, List<Table> tables) {
+        this.project = project;
         this.tables = tables;
     }
-
+    
     @Override
-    public void write() throws IOException {        
-        
-        JtwigTemplate serverTpl = JtwigTemplate.classpathTemplate("templates/go/nethttp/server.twig");
-        JtwigTemplate dbTpl = JtwigTemplate.classpathTemplate("templates/go/nethttp/db.twig");
-        JtwigModel model = JtwigModel.newModel()
-                .with("project", this.project)
-                .with("tables", this.tables);
-        
+    public void write() throws IOException {                
+        JtwigTemplate template = JtwigTemplate.classpathTemplate("templates/java/spark/spark.twig");        
+        JtwigModel model = JtwigModel.newModel().with("tables", getTables());
         String generatedPath = project.getPath() + "/" + getProject().getName();        
-        generateFile(generatedPath, "server.go", serverTpl, model);
-        generateFile(generatedPath, "db.go", dbTpl, model);
+        generateFile(generatedPath, "server.java", template, model);
     }
+    
     
 }

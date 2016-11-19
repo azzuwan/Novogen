@@ -23,6 +23,7 @@
  */
 package com.blazzify.gen.writer;
 
+import com.blazzify.gen.writer.go.NetHttpWriter;
 import com.blazzify.gen.project.GoProject;
 import com.blazzify.gen.project.Project;
 import java.io.File;

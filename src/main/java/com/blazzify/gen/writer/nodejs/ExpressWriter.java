@@ -21,10 +21,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.blazzify.gen.writer;
+package com.blazzify.gen.writer.nodejs;
 
 import com.blazzify.gen.project.ExpressProject;
 import com.blazzify.gen.project.Project;
+import com.blazzify.gen.writer.AbstractWriter;
 import java.io.IOException;
 import java.util.List;
 import org.apache.metamodel.schema.Table;
@@ -34,7 +35,7 @@ import org.apache.metamodel.schema.Table;
  * @author Azzuwan Aziz <azzuwan@gmail.com>
  */
 public class ExpressWriter extends AbstractWriter{
-    ExpressWriter(Project project, List<Table> tables) {
+    public ExpressWriter(Project project, List<Table> tables) {
         this.project = (ExpressProject) project;
         this.tables = tables;
     }
