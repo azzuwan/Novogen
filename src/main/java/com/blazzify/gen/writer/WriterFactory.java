@@ -23,6 +23,7 @@
  */
 package com.blazzify.gen.writer;
 
+import com.blazzify.gen.exception.FrameworkNotSupportedExecption;
 import com.blazzify.gen.project.Project;
 import java.util.List;
 import org.apache.metamodel.schema.Table;
@@ -49,7 +50,7 @@ public class WriterFactory {
                 writer = new ExpressWriter(project, tables);
                 
             default:
-                throw new UnsupportedOperationException("Code writer for "+ framework+" is not supported yet.");                
+                throw new FrameworkNotSupportedExecption("Writer Factory Error: Code writer for "+ framework+" is not supported yet.");                
                 
         }
         
