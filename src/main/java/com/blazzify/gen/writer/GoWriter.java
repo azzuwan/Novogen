@@ -44,8 +44,8 @@ public class GoWriter extends AbstractWriter{
     @Override
     public void write() throws IOException {        
         
-        JtwigTemplate serverTpl = JtwigTemplate.classpathTemplate("templates/go/nethttp/server.go");
-        JtwigTemplate dbTpl = JtwigTemplate.classpathTemplate("templates/go/nethttp/db.go");
+        JtwigTemplate serverTpl = JtwigTemplate.classpathTemplate("templates/go/nethttp/server.twig");
+        JtwigTemplate dbTpl = JtwigTemplate.classpathTemplate("templates/go/nethttp/db.twig");
         JtwigModel model = JtwigModel.newModel()
                 .with("project", this.project)
                 .with("tables", this.tables);
