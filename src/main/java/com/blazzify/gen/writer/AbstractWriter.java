@@ -23,14 +23,18 @@
  */
 package com.blazzify.gen.writer;
 
+import com.blazzify.gen.project.GoProject;
+import com.blazzify.gen.project.Project;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.apache.metamodel.schema.Table;
 import org.jtwig.JtwigModel;
 import org.jtwig.JtwigTemplate;
 
@@ -38,16 +42,35 @@ import org.jtwig.JtwigTemplate;
  *
  * @author Azzuwan Aziz <azzuwan@gmail.com>
  */
-public abstract class AbstractWriter implements Writer{
+public abstract class AbstractWriter implements Writer {
 
-private void generateFile(String path, String name, JtwigTemplate template,JtwigModel model){
-        try {            
-            String pathString = path +"/" + name;
+    protected Project project;
+    protected List<Table> tables;
+
+    public Project getProject() {
+        return project;
+    }
+
+    public void setProject(Project project) {
+        this.project = project;
+    }
+
+    public List<Table> getTables() {
+        return tables;
+    }
+
+    public void setTables(List<Table> tables) {
+        this.tables = tables;
+    }
+
+    protected void generateFile(String path, String name, JtwigTemplate template, JtwigModel model) {
+        try {
+            String pathString = path + "/" + name;
             System.out.println("Creating " + pathString);
             Path filePath = Paths.get(pathString);
             Files.createDirectories(filePath.getParent());
             File file = new File(pathString);
-            FileOutputStream stream  = new FileOutputStream(file);
+            FileOutputStream stream = new FileOutputStream(file);
             template.render(model, stream);
         } catch (IOException ex) {
             Logger.getLogger(GoWriter.class.getName()).log(Level.SEVERE, null, ex);
