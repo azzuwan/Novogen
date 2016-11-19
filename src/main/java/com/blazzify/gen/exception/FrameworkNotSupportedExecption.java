@@ -27,7 +27,7 @@ package com.blazzify.gen.exception;
  *
  * @author Azzuwan Aziz <azzuwan@gmail.com>
  */
-public class FrameworkNotSupportedExecption extends Exception{
+public class FrameworkNotSupportedExecption extends RuntimeException{
     public FrameworkNotSupportedExecption(String message) {
         super(message);
     }
