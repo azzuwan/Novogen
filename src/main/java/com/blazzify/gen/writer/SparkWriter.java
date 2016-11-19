@@ -23,7 +23,10 @@
  */
 package com.blazzify.gen.writer;
 
+import com.blazzify.gen.project.Project;
 import java.io.IOException;
+import java.util.List;
+import org.apache.metamodel.schema.Table;
 import org.jtwig.JtwigModel;
 import org.jtwig.JtwigTemplate;
 
@@ -32,6 +35,11 @@ import org.jtwig.JtwigTemplate;
  * @author Azzuwan Aziz <azzuwan@gmail.com>
  */
 public class SparkWriter extends AbstractWriter{
+
+    SparkWriter(Project project, List<Table> tables) {
+        this.project = project;
+        this.tables = tables;
+    }
     
     @Override
     public void write() throws IOException {                
