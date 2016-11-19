@@ -47,12 +47,7 @@ public class Database {
         this.user = user;
         this.password = password;
         this.type = type;
-    }
-    
-    
-    
-    
-    
+    }    
 
     /**
      * @param host the host to set
