@@ -56,7 +56,7 @@ public class Sql implements DbConnection {
 
     @Override
     public Connection getConnection() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return Sql.conn;
     }
     
 }
