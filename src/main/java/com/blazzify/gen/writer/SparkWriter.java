@@ -82,7 +82,7 @@ public class SparkWriter implements Writer{
         try {
             fos = new FileOutputStream(file);
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(DefaultWriter.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SparkWriter.class.getName()).log(Level.SEVERE, null, ex);
         }
         template.render(model, fos);
     }
