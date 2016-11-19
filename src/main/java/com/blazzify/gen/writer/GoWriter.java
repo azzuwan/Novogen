@@ -43,26 +43,7 @@ import org.jtwig.JtwigTemplate;
  *
  * @author Azzuwan Aziz <azzuwan@gmail.com>
  */
-public class GoWriter implements Writer{
-    private GoProject project;
-    List<Table> tables;
-
-    public GoProject getProject() {
-        return project;
-    }
-
-    public void setProject(GoProject project) {
-        this.project = project;
-    }
-
-    public List<Table> getTables() {
-        return tables;
-    }
-
-    public void setTables(List<Table> tables) {
-        this.tables = tables;
-    }
-
+public class GoWriter extends AbstractWriter{
     GoWriter(Project project, List<Table> tables) {
         this.project = (GoProject) project;
         this.tables = tables;
@@ -81,20 +62,6 @@ public class GoWriter implements Writer{
         String generatedPath = project.getPath() + "/" + getProject().getName();        
         generateFile(generatedPath, "server.go", serverTpl, model);
         generateFile(generatedPath, "db.go", dbTpl, model);
-    }
-    
-    private void generateFile(String path, String name, JtwigTemplate template,JtwigModel model){
-        try {            
-            String pathString = path +"/" + name;
-            System.out.println("Creating " + pathString);
-            Path filePath = Paths.get(pathString);
-            Files.createDirectories(filePath.getParent());
-            File file = new File(pathString);
-            FileOutputStream stream  = new FileOutputStream(file);
-            template.render(model, stream);
-        } catch (IOException ex) {
-            Logger.getLogger(GoWriter.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }
     
 }
