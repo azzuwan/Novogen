@@ -16,11 +16,13 @@ var settings = {{project.database.type}}.ConnectionURL{
 
 
 {% for table in tables %}
-type {{capitalize(table.name)}} struct {
+type {{table.name|capitalize}} struct {
         {% for column in table.columns %}
-	{{capitalize(column.name)}}  {{column.type}}   `db:"{{column.name}}"`
-       {% endfor %}
+        {{column.name|capitalize}}     {{column.type}}     `db:"{{column.name}}"`
+        {% endfor%} {{System.lineSeparator()}}
+
 }
+
 {% endfor %}
 
 

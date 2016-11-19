@@ -26,17 +26,24 @@ package com.blazzify.gen.writer.go;
 import com.blazzify.gen.project.GoProject;
 import com.blazzify.gen.project.Project;
 import com.blazzify.gen.writer.AbstractWriter;
+import com.mitchellbosecke.pebble.PebbleEngine;
+import com.mitchellbosecke.pebble.error.PebbleException;
+import com.mitchellbosecke.pebble.template.PebbleTemplate;
 import java.io.IOException;
+import java.io.StringWriter;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.apache.metamodel.schema.Table;
-import org.jtwig.JtwigModel;
-import org.jtwig.JtwigTemplate;
 
 /**
  *
  * @author Azzuwan Aziz <azzuwan@gmail.com>
  */
-public class NetHttpWriter extends AbstractWriter{
+public class NetHttpWriter extends AbstractWriter {
+
     public NetHttpWriter(Project project, List<Table> tables) {
         this.project = (GoProject) project;
         this.tables = tables;
@@ -44,16 +51,16 @@ public class NetHttpWriter extends AbstractWriter{
 
     @Override
     public void write() throws IOException {        
+        String generatedPath = project.getPath() + "/" + getProject().getName(); 
+        Map model = new HashMap();
+        model.put("project", project);
+        model.put("tables", tables);
         
-        JtwigTemplate serverTpl = JtwigTemplate.classpathTemplate("templates/go/nethttp/server.twig");
-        JtwigTemplate dbTpl = JtwigTemplate.classpathTemplate("templates/go/nethttp/db.twig");
-        JtwigModel model = JtwigModel.newModel()
-                .with("project", this.project)
-                .with("tables", this.tables);
-        
-        String generatedPath = project.getPath() + "/" + getProject().getName();        
-        generateFile(generatedPath, "server.go", serverTpl, model);
+        String dbTpl = "templates/go/nethttp/db.twig";
         generateFile(generatedPath, "db.go", dbTpl, model);
+        
+        String serverTpl = "templates/go/nethttp/server.twig";
+        generateFile(generatedPath, "server.go", serverTpl, model);
     }
-    
+
 }

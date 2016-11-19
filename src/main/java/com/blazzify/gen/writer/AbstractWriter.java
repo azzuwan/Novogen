@@ -24,15 +24,20 @@
 package com.blazzify.gen.writer;
 
 import com.blazzify.gen.writer.go.NetHttpWriter;
-import com.blazzify.gen.project.GoProject;
 import com.blazzify.gen.project.Project;
+import com.mitchellbosecke.pebble.PebbleEngine;
+import com.mitchellbosecke.pebble.error.PebbleException;
+import com.mitchellbosecke.pebble.template.PebbleTemplate;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.apache.metamodel.schema.Table;
@@ -63,18 +68,26 @@ public abstract class AbstractWriter implements Writer {
     public void setTables(List<Table> tables) {
         this.tables = tables;
     }
-
-    protected void generateFile(String path, String name, JtwigTemplate template, JtwigModel model) {
+    
+    protected void generateFile(String path, String name, String template, Map model){
         try {
             String pathString = path + "/" + name;
             System.out.println("Creating " + pathString);
             Path filePath = Paths.get(pathString);
             Files.createDirectories(filePath.getParent());
-            File file = new File(pathString);
-            FileOutputStream stream = new FileOutputStream(file);
-            template.render(model, stream);
-        } catch (IOException ex) {
-            Logger.getLogger(NetHttpWriter.class.getName()).log(Level.SEVERE, null, ex);
+            
+            PebbleEngine engine = new PebbleEngine.Builder().build();
+            PebbleTemplate dbTpl2 = engine.getTemplate(template);
+            java.io.Writer writer = new FileWriter(path + "/" + name);
+            
+            model.put("project", this.project);
+            model.put("tables", this.tables);
+            dbTpl2.evaluate(writer, model);
+            System.out.println(writer.toString());
+            writer.flush();
+            
+        } catch (PebbleException | IOException ex) {
+            Logger.getLogger(AbstractWriter.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

@@ -86,7 +86,7 @@ public class DefaultGenerator<P extends Project> implements Generator{
                         Column[] columns = table.getColumns();
                         columnList = Arrays.asList(columns);
                         for (Column column : columns) {
-                            System.out.println("        Column: " + column.getName());
+                            System.out.println("        Column: " + column.getName() + "Type: " + column.getType());
                         }
                     }
                 }
