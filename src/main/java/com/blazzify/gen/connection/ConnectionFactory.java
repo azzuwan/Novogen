@@ -43,14 +43,17 @@ public class ConnectionFactory {
         
         switch(type){
             case "mysql":
-                conn = MysqlConnection.getInstance(url).getConnection();
+                conn = Sql.getInstance(url).getConnection();
                 break;
             case "mariadb":
-                conn = MariaDbConnection.getInstance(url).getConnection();
+                conn = Sql.getInstance(url).getConnection();
                 break;                
             case "postgresql":
-                conn = PostgresConnection.getInstance(url).getConnection();
+                conn = Sql.getInstance(url).getConnection();
                 break;
+                
+            case "mongodb":
+                conn = Mongo.getInstance(url).getConnection();
                 
            default:
                throw new UnsupportedOperationException("The connection type is not supported yet");               
