@@ -27,7 +27,7 @@ package com.blazzify.gen.exception;
  *
  * @author Azzuwan Aziz <azzuwan@gmail.com>
  */
-public class WriterNotSupportedException extends Exception{
+public class WriterNotSupportedException extends RuntimeException{
     
     public WriterNotSupportedException(String message) {
         super(message);
