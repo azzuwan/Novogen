@@ -69,7 +69,7 @@ public abstract class AbstractWriter implements Writer {
         this.tables = tables;
     }
     
-    protected void generateFile(String path, String name, String template, Map model){
+    protected void generateFile(String path, String name, String templatePath, Map model){
         try {
             String pathString = path + "/" + name;
             System.out.println("Creating " + pathString);
@@ -77,12 +77,10 @@ public abstract class AbstractWriter implements Writer {
             Files.createDirectories(filePath.getParent());
             
             PebbleEngine engine = new PebbleEngine.Builder().build();
-            PebbleTemplate dbTpl2 = engine.getTemplate(template);
+            PebbleTemplate template = engine.getTemplate(templatePath);
             java.io.Writer writer = new FileWriter(path + "/" + name);
-            
-            model.put("project", this.project);
-            model.put("tables", this.tables);
-            dbTpl2.evaluate(writer, model);
+                        
+            template.evaluate(writer, model);
             System.out.println(writer.toString());
             writer.flush();
             
