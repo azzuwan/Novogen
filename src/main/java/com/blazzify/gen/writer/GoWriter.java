@@ -72,36 +72,29 @@ public class GoWriter implements Writer{
     public void write() throws IOException {
         
         
-        JtwigTemplate indexTemplate = JtwigTemplate.classpathTemplate("templates/go/nethttp/server.go");
-        JtwigTemplate dbTemplate = JtwigTemplate.classpathTemplate("templates/go/nethttp/db.go");
-        JtwigModel model = JtwigModel.newModel().with("tables", getTables());
+        JtwigTemplate serverTpl = JtwigTemplate.classpathTemplate("templates/go/nethttp/server.go");
+        JtwigTemplate dbTpl = JtwigTemplate.classpathTemplate("templates/go/nethttp/db.go");
+        JtwigModel model = JtwigModel.newModel()
+                .with("project", this.project)
+                .with("tables", this.tables);
         
-        String generatedPath = project.getPath() + "/" + getProject().getName();
-        
-        String indexFilePathString = generatedPath + "/server.go";
-        String dbFilePathString = generatedPath +"/db.go";
-        System.out.println("Full generation path: " + indexFilePathString);
-        
-        Path indexFilePath = Paths.get(indexFilePathString);
-        Path dbFilePath = Paths.get(dbFilePathString);
-        
-        Files.createDirectories(indexFilePath.getParent());
-        Files.createDirectories(dbFilePath.getParent());
-        
-        File indexFile = new File(indexFilePathString);
-        File dbFile = new File(dbFilePathString);
-        
-        FileOutputStream indexStream = null;
-        FileOutputStream dbStream = null;
-
-        try {
-            indexStream = new FileOutputStream(indexFile);
-            dbStream = new FileOutputStream(dbFile);
-        } catch (FileNotFoundException ex) {
+        String generatedPath = project.getPath() + "/" + getProject().getName();        
+        generateFile(generatedPath, "server.go", serverTpl, model);
+        generateFile(generatedPath, "db.go", dbTpl, model);
+    }
+    
+    private void generateFile(String path, String name, JtwigTemplate template,JtwigModel model){
+        try {            
+            String pathString = path +"/" + name;
+            System.out.println("Creating " + pathString);
+            Path filePath = Paths.get(pathString);
+            Files.createDirectories(filePath.getParent());
+            File file = new File(pathString);
+            FileOutputStream stream  = new FileOutputStream(file);
+            template.render(model, stream);
+        } catch (IOException ex) {
             Logger.getLogger(GoWriter.class.getName()).log(Level.SEVERE, null, ex);
         }
-        indexTemplate.render(model, indexStream);
-        dbTemplate.render(model, dbStream);
     }
     
 }
