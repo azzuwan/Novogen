@@ -4,27 +4,28 @@ import (
 	"log"
 
 	"upper.io/db.v2"
-	"upper.io/db.v2/postgresql"
+	"upper.io/db.v2/{{project.database.type}}"
 )
 
-var settings = postgresql.ConnectionURL{
-	Database: `booktown`,
-	Host:     `demo.upper.io`,
-	User:     `demouser`,
-	Password: `demop4ss`,
+var settings = {{project.database.type}}.ConnectionURL{
+	Database: `{{project.database.schema}}`,
+	Host:     `{{project.database.host}}`,
+	User:     `{{project.database.user}}`,
+	Password: `{{project.database.password}}`,
 }
 
-// Book represents an element from the "books" table, column names are mapped
-// to Go values.
-type Book struct {
-	ID        uint   `db:"id"`
-	Title     string `db:"title"`
-	AuthorID  uint   `db:"author_id"`
-	SubjectID uint   `db:"subject_id"`
+
+{% for table in tables %}
+type {{capitalize(table.name)}} struct {
+        {% for column in table.columns %}
+	{{capitalize(column.name)}}  {{column.type}}   `db:"{{column.name}}"`
+       {% endfor %}
 }
+{% endfor %}
+
 
 func main() {
-	sess, err := postgresql.Open(settings)
+	sess, err := {{project.database.type}}.Open(settings)
 	if err != nil {
 		log.Fatal(err)
 	}
