@@ -23,6 +23,7 @@
  */
 package com.blazzify.gen.generator;
 
+import com.blazzify.gen.exception.FrameworkNotSupportedExecption;
 import com.blazzify.gen.project.ExpressProject;
 import com.blazzify.gen.project.GoProject;
 import com.blazzify.gen.project.Project;
@@ -51,7 +52,7 @@ public class GeneratorFactory {
                 break;
                 
             default:
-                throw new UnsupportedOperationException("Framework " + framework + "not supported yet");
+                throw new FrameworkNotSupportedExecption("Generator Factory error: Framework " + framework + "not supported yet");
         }
         
         return generator;
