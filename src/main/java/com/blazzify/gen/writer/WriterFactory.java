@@ -43,7 +43,7 @@ public class WriterFactory {
                 break;
                 
             case "nethttp":
-                writer = new GoWriter(project, tables);
+                writer = new NetHttpWriter(project, tables);
                 break;
                 
             case "express":

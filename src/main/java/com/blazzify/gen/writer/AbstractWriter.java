@@ -73,7 +73,7 @@ public abstract class AbstractWriter implements Writer {
             FileOutputStream stream = new FileOutputStream(file);
             template.render(model, stream);
         } catch (IOException ex) {
-            Logger.getLogger(GoWriter.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(NetHttpWriter.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

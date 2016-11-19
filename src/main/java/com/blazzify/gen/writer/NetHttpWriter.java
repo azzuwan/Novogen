@@ -35,8 +35,8 @@ import org.jtwig.JtwigTemplate;
  *
  * @author Azzuwan Aziz <azzuwan@gmail.com>
  */
-public class GoWriter extends AbstractWriter{
-    GoWriter(Project project, List<Table> tables) {
+public class NetHttpWriter extends AbstractWriter{
+    NetHttpWriter(Project project, List<Table> tables) {
         this.project = (GoProject) project;
         this.tables = tables;
     }

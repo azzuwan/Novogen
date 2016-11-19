@@ -52,7 +52,7 @@ public class GeneratorFactory {
                 break;
                 
             default:
-                throw new FrameworkNotSupportedExecption("Generator Factory error: Framework " + framework + "not supported yet");
+                throw new FrameworkNotSupportedExecption("Generator Factory error: Framework " + framework + " is not supported yet");
         }
         
         return generator;
