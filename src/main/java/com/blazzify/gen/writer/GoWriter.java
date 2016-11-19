@@ -98,7 +98,7 @@ public class GoWriter implements Writer{
             indexStream = new FileOutputStream(indexFile);
             dbStream = new FileOutputStream(dbFile);
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(DefaultWriter.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(GoWriter.class.getName()).log(Level.SEVERE, null, ex);
         }
         indexTemplate.render(model, indexStream);
         dbTemplate.render(model, dbStream);
