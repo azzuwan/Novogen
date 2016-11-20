@@ -11,9 +11,25 @@ import (
 
 func main() {
 	router := httprouter.New()        
-	router.GET("/", Index)
+	
+        router.GET("/", Index)
+        
         {% for table in tables %}
-	router.GET("/{{table.name}}/:name", Hello)
+        //{{table.name|singular|camel_case|capitalize}}
+        
+	router.GET("/{{table.name|plural|camel_case|capitalize}}", Get{{table.name|plural|camel_case|capitalize}})
+        
+        router.GET("/{{table.name|singular|camel_case|capitalize}}/:id", Get{{table.name|singular|camel_case|capitalize}})
+        
+        router.POST("/{{table.name|plural|camel_case|capitalize}}", Post{{table.name|plural|camel_case|capitalize}})
+        
+        router.POST("/{{table.name|singular|camel_case|capitalize}}", Post{{table.name|singular|camel_case|capitalize}})
+        
+        router.PUT("/{{table.name|singular|camel_case|capitalize}}/:id", Put{{table.name|singular|camel_case|capitalize}})
+        
+        router.DEL("/{{table.name|singular|camel_case|capitalize}}/:id", Del{{table.name|singular|camel_case|capitalize}})
+        
+        
         {% endfor %}
 
 	log.Fatal(http.ListenAndServe(":7788", router))
