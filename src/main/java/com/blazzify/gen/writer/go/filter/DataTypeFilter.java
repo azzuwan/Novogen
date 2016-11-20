@@ -71,6 +71,7 @@ public class DataTypeFilter implements Filter{
                 break;
             case "FLOAT":
                 dataType = "float32";
+                break;
             default:
                 dataType = null;
                 throw new DataTypeNotSupportedException("Data Type " + dataType + " conversion to Go data type is not supported");                                
@@ -83,7 +84,7 @@ public class DataTypeFilter implements Filter{
 
     @Override
     public List<String> getArgumentNames() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return null;
     }
     
 }

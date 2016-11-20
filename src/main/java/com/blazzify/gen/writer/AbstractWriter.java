@@ -25,6 +25,8 @@ package com.blazzify.gen.writer;
 
 import com.blazzify.gen.writer.go.NetHttpWriter;
 import com.blazzify.gen.project.Project;
+import com.blazzify.gen.writer.go.PebbleExtension;
+import com.blazzify.gen.writer.go.filter.DataTypeFilter;
 import com.mitchellbosecke.pebble.PebbleEngine;
 import com.mitchellbosecke.pebble.error.PebbleException;
 import com.mitchellbosecke.pebble.template.PebbleTemplate;
@@ -75,8 +77,11 @@ public abstract class AbstractWriter implements Writer {
             System.out.println("Creating " + pathString);
             Path filePath = Paths.get(pathString);
             Files.createDirectories(filePath.getParent());
+            PebbleExtension extension = new PebbleExtension();
             
-            PebbleEngine engine = new PebbleEngine.Builder().build();
+            extension.getFilters().put("dataType", new DataTypeFilter());
+            PebbleEngine engine = new PebbleEngine.Builder().extension(extension).build();
+            
             PebbleTemplate template = engine.getTemplate(templatePath);
             java.io.Writer writer = new FileWriter(path + "/" + name);
                         

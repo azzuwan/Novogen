@@ -26,10 +26,10 @@ package com.blazzify.gen.writer.java;
 import com.blazzify.gen.project.Project;
 import com.blazzify.gen.writer.AbstractWriter;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import org.apache.metamodel.schema.Table;
-import org.jtwig.JtwigModel;
-import org.jtwig.JtwigTemplate;
 
 /**
  *
@@ -44,10 +44,12 @@ public class SparkWriter extends AbstractWriter{
     
     @Override
     public void write() throws IOException {                
-        JtwigTemplate template = JtwigTemplate.classpathTemplate("templates/java/spark/spark.twig");        
-        JtwigModel model = JtwigModel.newModel().with("tables", getTables());
+        String  serverTemplate = "templates/java/spark/spark.twig";        
+        Map model = new HashMap();
+        model.put("project", project);
+        model.put("tables", tables);
         String generatedPath = project.getPath() + "/" + getProject().getName();        
-        generateFile(generatedPath, "server.java", template, model);
+        generateFile(generatedPath, "server.java", serverTemplate, model);
     }
     
     

@@ -18,7 +18,7 @@ var settings = {{project.database.type}}.ConnectionURL{
 {% for table in tables %}
 type {{table.name|capitalize}} struct {
         {% for column in table.columns %}
-        {{column.name|capitalize}}     {{column.type}}     `db:"{{column.name}}"`
+        {{column.name|capitalize}}     {{column.type|dataType}}     `db:"{{column.name}}"`
         {% endfor%} {{System.lineSeparator()}}
 
 }
