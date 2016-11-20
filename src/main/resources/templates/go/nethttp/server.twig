@@ -10,9 +10,11 @@ import (
 )
 
 func main() {
-	router := httprouter.New()
+	router := httprouter.New()        
 	router.GET("/", Index)
-	router.GET("/hello/:name", Hello)
+        {% for table in tables %}
+	router.GET("/{{table.name}}/:name", Hello)
+        {% endfor %}
 
 	log.Fatal(http.ListenAndServe(":7788", router))
 }
