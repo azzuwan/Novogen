@@ -16,11 +16,18 @@ Tools used:
 
 Goals
 ------------------
-- To be able to generate a full fledge web application the following frameworks 
-    -Go (net/http)
-    -ExpressJS
-    -Laravel
-    -SparkJava
+- To be able to generate a full fledge web application the following frameworks: 
+    - Go (net/http)
+    - ExpressJS
+    - Laravel
+    - SparkJava
+
+- Ability to support any persistent store supported by Metamodel especially:
+    - Mysql
+    - Postgresql
+    - Microsost SQL Server
+    - MongoDB
+
 - Generic enough to allow generation for more frameworks in other languages in the future.
 
 Usage
