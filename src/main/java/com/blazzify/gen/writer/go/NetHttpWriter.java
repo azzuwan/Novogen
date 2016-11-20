@@ -26,16 +26,10 @@ package com.blazzify.gen.writer.go;
 import com.blazzify.gen.project.GoProject;
 import com.blazzify.gen.project.Project;
 import com.blazzify.gen.writer.AbstractWriter;
-import com.mitchellbosecke.pebble.PebbleEngine;
-import com.mitchellbosecke.pebble.error.PebbleException;
-import com.mitchellbosecke.pebble.template.PebbleTemplate;
 import java.io.IOException;
-import java.io.StringWriter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.apache.metamodel.schema.Table;
 
 /**
