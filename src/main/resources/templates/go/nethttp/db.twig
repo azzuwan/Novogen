@@ -1,8 +1,8 @@
-package database
+package main
 
 import (
 	"log"
-
+        "time"
 	"upper.io/db.v2"
 	"upper.io/db.v2/{{project.database.type}}"
 )
@@ -39,18 +39,18 @@ func main() {
 
 	// Define a result set without passing a condition to Find(), this means we
 	// want to match all the elements on the books table.
-	res := sess.Collection("books").Find()
+	res := sess.Collection("employees").Find()
 
 	// We can use this res object later in different queries, here we'll use it
 	// to fetch all the books on our catalog in descending order.
-	var books []Book
-	if err := res.OrderBy("title DESC").All(&books); err != nil {
+	var employees []Employees
+	if err := res.OrderBy("first_name DESC").All(&employees); err != nil {
 		log.Fatal(err)
 	}
 
 	// The books slice has been populated!
-	log.Println("Books:")
-	for _, book := range books {
-		log.Printf("%q (ID: %d)\n", book.Title, book.ID)
+	log.Println("Employees:")
+	for _, emp := range employees {
+		log.Printf("%q (ID: %d)\n", emp.First_name, emp.Emp_no)
 	}
 }
