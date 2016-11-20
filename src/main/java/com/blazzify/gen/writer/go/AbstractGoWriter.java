@@ -37,15 +37,15 @@ import java.util.logging.Logger;
  */
 public abstract class AbstractGoWriter extends AbstractWriter {
 
-    public void format() {
+    public void format(String path) {
         try {
             boolean isWindows = System.getProperty("os.name")
                     .toLowerCase().startsWith("windows");
             ProcessBuilder builder = new ProcessBuilder();
             if (isWindows) {
-                builder.command("cmd.exe", "/c", "dir");
+                builder.command("cmd.exe", "/c", "gofmt -s " + path);
             } else {
-                builder.command("sh", "-c", "ls");
+                builder.command("sh", "-c", "gofmt -s " + path);
             }
             builder.directory(new File(System.getProperty("user.home")));
             Process process = builder.start();
