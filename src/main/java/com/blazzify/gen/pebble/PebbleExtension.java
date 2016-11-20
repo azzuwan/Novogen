@@ -21,7 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.blazzify.gen.writer.go;
+package com.blazzify.gen.pebble;
 
 import com.blazzify.gen.writer.go.filter.DataTypeFilter;
 import com.mitchellbosecke.pebble.extension.AbstractExtension;
