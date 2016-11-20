@@ -1,8 +1,8 @@
 Novogen Database Web Application Generator
 ==================
 
-A database application generator that scaffolds a fully functioning application with CRUD pages and JSON API end points.
-This is a database first development approach. The generator should figure out the database objects and create all the necessary user interface for it plus a rich set of JSON APis.
+A database web application generator that scaffolds a fully functioning application with CRUD pages and JSON API end points.
+This is a database first development approach. The generator should figure out the database objects and create all the necessary user interface for it plus a rich set of JSON APIs.
 
 Tools used:
 
