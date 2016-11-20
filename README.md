@@ -1,4 +1,4 @@
-Tempoyak AppGen
+Novogen, Database Web Application Generator
 ==================
 
 Description
