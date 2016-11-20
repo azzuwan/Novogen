@@ -61,10 +61,10 @@ public class DataTypeFilter implements Filter{
                 dataType = "string";
                 break;                
             case "DATE":
-                dataType = "time.time";
+                dataType = "time.Time";
                 break;
             case "DATETIME":
-                dataType = "time.time";
+                dataType = "time.Time";
                 break;
             case "TIMESTAMP":
                 dataType = "string";
