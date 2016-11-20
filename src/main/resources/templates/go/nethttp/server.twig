@@ -4,12 +4,13 @@ package main
 import (
 	"fmt"
 	"log"
-	"net/http"
-
+	"net/http"        
 	"github.com/julienschmidt/httprouter"
 )
 
 func main() {
+        TestDB()
+        
 	router := httprouter.New()        
 	
         router.GET("/", Index)
@@ -27,7 +28,7 @@ func main() {
         
         router.PUT("/{{table.name|singular|camel_case|capitalize}}/:id", Put{{table.name|singular|camel_case|capitalize}})
         
-        router.DELETE("/{{table.name|singular|camel_case|capitalize}}/:id", Del{{table.name|singular|camel_case|capitalize}})
+        router.DELETE("/{{table.name|singular|camel_case|capitalize}}/:id", Delete{{table.name|singular|camel_case|capitalize}})
         
         
         {% endfor %}
@@ -41,16 +42,15 @@ func Index(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 }
 
 {% for table in tables %}
-func Get{{table.name|singular|plural|camel_case|capitalize}}(w http.ResponseWriter, r *http.Request, _ httprouter.Params){
+func Get{{table.name|plural|camel_case|capitalize}}(w http.ResponseWriter, r *http.Request, _ httprouter.Params){
         fmt.Fprintf(w, "{{table.name}}")
 }
 
 func Get{{table.name|singular|camel_case|capitalize}}(w http.ResponseWriter, r *http.Request, _ httprouter.Params){
-        fmt.Fprintf(w, "{{table.name|singular}}")
-        
+        fmt.Fprintf(w, "{{table.name}}")
 }
 
-func Post{{table.name|singular|plural|camel_case|capitalize}}(w http.ResponseWriter, r *http.Request, _ httprouter.Params){
+func Post{{table.name|plural|camel_case|capitalize}}(w http.ResponseWriter, r *http.Request, _ httprouter.Params){
         fmt.Fprintf(w, "{{table.name}}")
 }
 
@@ -62,7 +62,7 @@ func Put{{table.name|singular|camel_case|capitalize}}(w http.ResponseWriter, r *
         fmt.Fprintf(w, "{{table.name}}")
 }
 
-func Del{{table.name|singular|camel_case|capitalize}}(w http.ResponseWriter, r *http.Request, _ httprouter.Params){
+func Delete{{table.name|singular|camel_case|capitalize}}(w http.ResponseWriter, r *http.Request, _ httprouter.Params){
         fmt.Fprintf(w, "{{table.name}}")
 }
 {% endfor %}
