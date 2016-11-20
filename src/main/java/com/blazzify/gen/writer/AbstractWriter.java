@@ -25,6 +25,8 @@ package com.blazzify.gen.writer;
 
 import com.blazzify.gen.project.Project;
 import com.blazzify.gen.pebble.PebbleExtension;
+import com.blazzify.gen.pebble.filter.SingularFilter;
+import com.blazzify.gen.pebble.filter.StringCaseFilter;
 import com.blazzify.gen.pebble.filter.go.DataTypeFilter;
 import com.mitchellbosecke.pebble.PebbleEngine;
 import com.mitchellbosecke.pebble.error.PebbleException;
@@ -73,7 +75,10 @@ public abstract class AbstractWriter implements Writer {
             Files.createDirectories(filePath.getParent());
             PebbleExtension extension = new PebbleExtension();
             
-            extension.getFilters().put("dataType", new DataTypeFilter());
+            extension.getFilters().put("data_type", new DataTypeFilter());
+            extension.getFilters().put("camel_case", new StringCaseFilter());
+            extension.getFilters().put("singular", new SingularFilter());
+            
             PebbleEngine engine = new PebbleEngine.Builder().extension(extension).build();
             
             PebbleTemplate template = engine.getTemplate(templatePath);
