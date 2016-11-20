@@ -86,8 +86,8 @@ public abstract class AbstractWriter implements Writer {
             java.io.Writer writer = new FileWriter(path + "/" + name);
                         
             template.evaluate(writer, model);
-            System.out.println(writer.toString());
-            writer.flush();
+            System.out.println(writer.toString());            
+            writer.close();
             
         } catch (PebbleException | IOException ex) {
             Logger.getLogger(AbstractWriter.class.getName()).log(Level.SEVERE, null, ex);
