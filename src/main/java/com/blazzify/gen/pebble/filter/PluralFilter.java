@@ -36,7 +36,8 @@ public class PluralFilter implements Filter {
 
     @Override
     public Object apply(Object o, Map<String, Object> map) {
-        return English.plural(o.toString());
+        String singular = English.singular(o.toString());
+        return English.plural(singular);
     }
 
     @Override
