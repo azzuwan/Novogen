@@ -25,7 +25,7 @@ package com.blazzify.gen.writer;
 
 import com.blazzify.gen.project.Project;
 import com.blazzify.gen.pebble.PebbleExtension;
-import com.blazzify.gen.writer.go.filter.DataTypeFilter;
+import com.blazzify.gen.pebble.filter.go.DataTypeFilter;
 import com.mitchellbosecke.pebble.PebbleEngine;
 import com.mitchellbosecke.pebble.error.PebbleException;
 import com.mitchellbosecke.pebble.template.PebbleTemplate;

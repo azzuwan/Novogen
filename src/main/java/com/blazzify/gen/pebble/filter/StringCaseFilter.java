@@ -21,27 +21,31 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.blazzify.gen.pebble;
+package com.blazzify.gen.pebble.filter;
 
-import com.blazzify.gen.pebble.filter.go.DataTypeFilter;
-import com.mitchellbosecke.pebble.extension.AbstractExtension;
-import com.mitchellbosecke.pebble.extension.Extension;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  *
  * @author Azzuwan Aziz <azzuwan@gmail.com>
  */
-public class PebbleExtension extends AbstractExtension implements Extension{
-    Map map = new HashMap();
+public class StringCaseFilter {
+     public static boolean isSnakeCase(String name) {
+        return Pattern.matches("[\\da-z_]+", name);
+    }
+     
+     public static String getCamelCase(String name) {
+        if(name == null) return null;
 
-    public PebbleExtension() {
-        map.put("dataType", new DataTypeFilter());
+        Pattern p = Pattern.compile("_(.)");
+        Matcher m = p.matcher(name);
+        StringBuffer sb = new StringBuffer();
+        while (m.find()) {
+            m.appendReplacement(sb, m.group(1).toUpperCase());
+        }
+        m.appendTail(sb);
+        return sb.toString();
     }
-    
-    @Override
-    public Map getFilters(){
-        return map;
-    }
+
 }

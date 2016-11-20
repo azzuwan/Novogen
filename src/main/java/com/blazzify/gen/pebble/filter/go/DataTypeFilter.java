@@ -21,7 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.blazzify.gen.writer.go.filter;
+package com.blazzify.gen.pebble.filter.go;
 
 import com.blazzify.gen.exception.DataTypeNotSupportedException;
 import com.mitchellbosecke.pebble.extension.Filter;
