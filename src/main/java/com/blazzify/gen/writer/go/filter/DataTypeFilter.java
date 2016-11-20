@@ -54,6 +54,9 @@ public class DataTypeFilter implements Filter{
             case "VARCHAR":
                 dataType = "string";
                 break;
+            case "CHAR":
+                dataType = "string";
+                break;
             case "TEXT":
                 dataType = "string";
                 break;                
@@ -74,7 +77,7 @@ public class DataTypeFilter implements Filter{
                 break;
             default:
                 dataType = null;
-                throw new DataTypeNotSupportedException("Data Type " + dataType + " conversion to Go data type is not supported");                                
+                throw new DataTypeNotSupportedException("Data Type " + o + " conversion to Go data type is not supported");                                
         }
         
         return dataType;
