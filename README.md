@@ -10,29 +10,26 @@ This is a database first development approach. The generator is supposed to figu
 Tools used:
 
 - Java 8
-- Apache MetaModel - An excellent all persistent type meta query interface [http://metamodel.apache.org/](http://metamodel.apache.org/ "http://metamodel.apache.org/")
+- [Apache MetaModel](http://metamodel.apache.org/ "http://metamodel.apache.org/")
 - [Pebble Template Engine](http://www.mitchellbosecke.com/pebble/home "http://www.mitchellbosecke.com/pebble/home") 
 
 
 Goals
 ------------------
-- To be able to generate a full fledge web application framework like Spark Java, Laravel, ExpressJS etc.
-- Generic enough to allow generation for more frameworks in other languages.
+- To be able to generate a full fledge web application the following frameworks 
+    -Go (net/http)
+    -ExpressJS
+    -Laravel
+    -SparkJava
+- Generic enough to allow generation for more frameworks in other languages in the future.
 
 Usage
 ------------------
 - The Maven project will generate a gen.jar file in the target directory
-- The gen.jar needs to have:  1) the templates folder and 2) project.json in the same directory
-- Usage: java -jar gen.jar project.json
-
-Templates
-------------------
-- Example framework templates is included in the root directory of the repository
-- The data to be passed to the template will be standardized soon
-- The directory needs to be present in the same dir as the gen.jar executable file. 
+- The gen.jar needs to be fed with a json file describing the project
+- Example Usage: java -jar gen.jar project.json
 
 
 Generated Files
 ------------------
-- The generated files is specified in the path key of the project.json
-- The generated files will be in /[path in json]/projects/[language]/project_name
+- The generated files will be in the path specified in project json file.
