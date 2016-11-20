@@ -22,7 +22,7 @@ Goals
     - Laravel
     - SparkJava
 
-- Ability to support any persistent store supported by Metamodel especially:
+- Support the following persistent store:
     - Mysql
     - Postgresql
     - Microsost SQL Server
