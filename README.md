@@ -11,7 +11,7 @@ Tools used:
 
 - Java 8
 - Apache MetaModel - An excellent all persistent type meta query interface [http://metamodel.apache.org/](http://metamodel.apache.org/ "http://metamodel.apache.org/")
-- (http://www.mitchellbosecke.com/pebble/home "Pebble Template Engine") 
+- [Pebble Template Engine](http://www.mitchellbosecke.com/pebble/home "http://www.mitchellbosecke.com/pebble/home") 
 
 
 Goals
