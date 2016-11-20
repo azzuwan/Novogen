@@ -1,8 +1,6 @@
-Novogen, Database Web Application Generator
+Novogen Database Web Application Generator
 ==================
 
-Description
-------------------
 A database application generator that scaffolds a fully functioning application with CRUD pages and JSON API end points.
 
 This is a database first development approach. The generator is supposed to figure out the database structure and create all the necessary user interface for it plus a rich set of JSON APis.
@@ -12,6 +10,7 @@ Tools used:
 - Java 8
 - [Apache MetaModel](http://metamodel.apache.org/ "http://metamodel.apache.org/")
 - [Pebble Template Engine](http://www.mitchellbosecke.com/pebble/home "http://www.mitchellbosecke.com/pebble/home") 
+- Apache Maven
 
 
 Goals
