@@ -16,9 +16,9 @@ var settings = {{project.database.type}}.ConnectionURL{
 
 
 {% for table in tables %}
-type {{table.name|capitalize}} struct {
+type {{table.name|singular|camel_case|capitalize}} struct {
         {% for column in table.columns %}
-        {{column.name|capitalize}}     {{column.type|dataType}}     `db:"{{column.name}}"`
+        {{column.name|camel_case|capitalize}}     {{column.type|data_type}}     `db:"{{column.name}}"`
         {% endfor%} {{System.lineSeparator()}}
 
 }
@@ -43,7 +43,7 @@ func main() {
 
 	// We can use this res object later in different queries, here we'll use it
 	// to fetch all the books on our catalog in descending order.
-	var employees []Employees
+	var employees []Employee
 	if err := res.OrderBy("first_name DESC").All(&employees); err != nil {
 		log.Fatal(err)
 	}
@@ -51,6 +51,6 @@ func main() {
 	// The books slice has been populated!
 	log.Println("Employees:")
 	for _, emp := range employees {
-		log.Printf("%q (ID: %d)\n", emp.First_name, emp.Emp_no)
+		log.Printf("%q (ID: %d)\n", emp.FirstName, emp.EmpNo)
 	}
 }
