@@ -30,11 +30,11 @@ Goals
 
 Usage
 ------------------
-- The Maven project will generate a gen.jar file in the target directory
-- The novogen.jar needs to be fed with a json file describing the project
-- Example Usage: java -jar gen.jar project.json
+- The Maven project will generate a novogen.jar file in the target directory
+- The novogen.jar needs to be fed with a JSON file describing the project
+- Example Usage: java -jar novogen.jar project.json
 
 
 Generated Files
 ------------------
-- The generated files will be in the path specified in project json file.
+- The project will be generated in the path specified in project JSON file.
