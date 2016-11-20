@@ -25,7 +25,6 @@ package com.blazzify.gen.writer.go;
 
 import com.blazzify.gen.project.GoProject;
 import com.blazzify.gen.project.Project;
-import com.blazzify.gen.writer.AbstractWriter;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
