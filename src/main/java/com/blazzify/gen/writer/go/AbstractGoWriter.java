@@ -24,10 +24,7 @@
 package com.blazzify.gen.writer.go;
 
 import com.blazzify.gen.writer.AbstractWriter;
-import com.blazzify.gen.writer.util.StreamGobbler;
-import java.io.File;
 import java.io.IOException;
-import java.util.concurrent.Executors;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -38,25 +35,26 @@ import java.util.logging.Logger;
 public abstract class AbstractGoWriter extends AbstractWriter {
 
     public void format(String path) {
+       
         try {
+            Process p = null;
             boolean isWindows = System.getProperty("os.name")
                     .toLowerCase().startsWith("windows");
-            ProcessBuilder builder = new ProcessBuilder();
+            
             if (isWindows) {
-                builder.command("cmd.exe", "/c", "gofmt " + path);                
+                p = new ProcessBuilder(new String[]{"cmd.exe", "/c", "gofmt", path})
+                        .inheritIO().start();
+                        
+                
             } else {
-                builder.command("sh", "-c", "gofmt " + path);
+                p = new ProcessBuilder(new String[]{"gofmt", "-s", "-w", path})
+                        .inheritIO().start();                
+                
             }
-            
-            System.out.println(builder.command().toString());
-            
-            builder.directory(new File(System.getProperty("user.home")));
-            Process process = builder.start();
-            StreamGobbler streamGobbler
-                    = new StreamGobbler(process.getInputStream(), System.out::println);
-            Executors.newSingleThreadExecutor().submit(streamGobbler);
-            int exitCode = process.waitFor();                        
-            System.out.println("ERROR CODE: " + exitCode);
+            int exitCode = p.waitFor();
+            System.out.println("EXIT CODE: " + exitCode);
+            p.destroy();
+                
         } catch (IOException | InterruptedException ex) {
             Logger.getLogger(AbstractGoWriter.class.getName()).log(Level.SEVERE, null, ex);
         }
