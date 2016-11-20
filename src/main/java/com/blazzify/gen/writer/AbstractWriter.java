@@ -23,28 +23,22 @@
  */
 package com.blazzify.gen.writer;
 
-import com.blazzify.gen.writer.go.NetHttpWriter;
 import com.blazzify.gen.project.Project;
 import com.blazzify.gen.writer.go.PebbleExtension;
 import com.blazzify.gen.writer.go.filter.DataTypeFilter;
 import com.mitchellbosecke.pebble.PebbleEngine;
 import com.mitchellbosecke.pebble.error.PebbleException;
 import com.mitchellbosecke.pebble.template.PebbleTemplate;
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.apache.metamodel.schema.Table;
-import org.jtwig.JtwigModel;
-import org.jtwig.JtwigTemplate;
 
 /**
  *
@@ -71,7 +65,7 @@ public abstract class AbstractWriter implements Writer {
         this.tables = tables;
     }
     
-    protected void generateFile(String path, String name, String templatePath, Map model){
+    protected void generate(String path, String name, String templatePath, Map model){
         try {
             String pathString = path + "/" + name;
             System.out.println("Creating " + pathString);

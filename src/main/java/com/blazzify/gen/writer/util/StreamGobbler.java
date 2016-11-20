@@ -24,26 +24,47 @@
 package com.blazzify.gen.writer.util;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.function.Consumer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author Azzuwan Aziz <azzuwan@gmail.com>
  */
 public class StreamGobbler implements Runnable {
+
     private InputStream inputStream;
     private Consumer<String> consumer;
- 
+
     public StreamGobbler(InputStream inputStream, Consumer<String> consumer) {
         this.inputStream = inputStream;
         this.consumer = consumer;
     }
- 
+
     @Override
     public void run() {
-        new BufferedReader(new InputStreamReader(inputStream)).lines()
-          .forEach(consumer);
+        BufferedReader br = null;
+        try {
+            br = new BufferedReader(new InputStreamReader(inputStream));
+//            br.lines()
+//                    .forEach(consumer);
+            String line;
+            while ((line = br.readLine()) != null) {
+                System.out.println(line);
+            }
+            
+        } catch (IOException ex) {
+            Logger.getLogger(StreamGobbler.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            try {
+                br.close();
+            } catch (IOException ex) {
+                Logger.getLogger(StreamGobbler.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 }

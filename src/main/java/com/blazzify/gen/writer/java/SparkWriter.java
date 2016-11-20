@@ -49,7 +49,7 @@ public class SparkWriter extends AbstractWriter{
         model.put("project", project);
         model.put("tables", tables);
         String generatedPath = project.getPath() + "/" + getProject().getName();        
-        generateFile(generatedPath, "server.java", serverTemplate, model);
+        generate(generatedPath, "server.java", serverTemplate, model);
     }
     
     

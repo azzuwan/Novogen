@@ -50,10 +50,12 @@ public class NetHttpWriter extends AbstractGoWriter {
         model.put("tables", tables);
         
         String dbTpl = "templates/go/nethttp/db.twig";
-        generateFile(generatedPath, "db.go", dbTpl, model);
+        generate(generatedPath, "db.go", dbTpl, model);
+        format(generatedPath + "/" + "db.go");
         
         String serverTpl = "templates/go/nethttp/server.twig";
-        generateFile(generatedPath, "server.go", serverTpl, model);
+        generate(generatedPath, "server.go", serverTpl, model);
+        format(generatedPath + "/" + "server.go");
     }
 
 }

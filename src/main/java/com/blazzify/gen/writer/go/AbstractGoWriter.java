@@ -43,17 +43,20 @@ public abstract class AbstractGoWriter extends AbstractWriter {
                     .toLowerCase().startsWith("windows");
             ProcessBuilder builder = new ProcessBuilder();
             if (isWindows) {
-                builder.command("cmd.exe", "/c", "gofmt -s " + path);
+                builder.command("cmd.exe", "/c", "gofmt " + path);                
             } else {
-                builder.command("sh", "-c", "gofmt -s " + path);
+                builder.command("sh", "-c", "gofmt " + path);
             }
+            
+            System.out.println(builder.command().toString());
+            
             builder.directory(new File(System.getProperty("user.home")));
             Process process = builder.start();
             StreamGobbler streamGobbler
                     = new StreamGobbler(process.getInputStream(), System.out::println);
             Executors.newSingleThreadExecutor().submit(streamGobbler);
-            int exitCode = process.waitFor();
-            assert exitCode == 0;
+            int exitCode = process.waitFor();                        
+            System.out.println("ERROR CODE: " + exitCode);
         } catch (IOException | InterruptedException ex) {
             Logger.getLogger(AbstractGoWriter.class.getName()).log(Level.SEVERE, null, ex);
         }
