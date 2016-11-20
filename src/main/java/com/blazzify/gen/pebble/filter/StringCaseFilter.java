@@ -23,6 +23,9 @@
  */
 package com.blazzify.gen.pebble.filter;
 
+import com.mitchellbosecke.pebble.extension.Filter;
+import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -30,7 +33,7 @@ import java.util.regex.Pattern;
  *
  * @author Azzuwan Aziz <azzuwan@gmail.com>
  */
-public class StringCaseFilter {
+public class StringCaseFilter implements Filter{
      public static boolean isSnakeCase(String name) {
         return Pattern.matches("[\\da-z_]+", name);
     }
@@ -46,6 +49,16 @@ public class StringCaseFilter {
         }
         m.appendTail(sb);
         return sb.toString();
+    }
+
+    @Override
+    public Object apply(Object o, Map<String, Object> map) {
+        return getCamelCase(o.toString());
+    }
+
+    @Override
+    public List<String> getArgumentNames() {
+        return null;
     }
 
 }
