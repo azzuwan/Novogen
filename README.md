@@ -33,7 +33,7 @@ Goals
 Usage
 ------------------
 - The Maven project will generate a gen.jar file in the target directory
-- The gen.jar needs to be fed with a json file describing the project
+- The novogen.jar needs to be fed with a json file describing the project
 - Example Usage: java -jar gen.jar project.json
 
 
