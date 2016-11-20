@@ -36,7 +36,7 @@ import org.apache.metamodel.schema.Table;
  *
  * @author Azzuwan Aziz <azzuwan@gmail.com>
  */
-public class NetHttpWriter extends AbstractWriter {
+public class NetHttpWriter extends AbstractGoWriter {
 
     public NetHttpWriter(Project project, List<Table> tables) {
         this.project = (GoProject) project;
