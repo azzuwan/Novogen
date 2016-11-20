@@ -27,7 +27,7 @@ func main() {
         
         router.PUT("/{{table.name|singular|camel_case|capitalize}}/:id", Put{{table.name|singular|camel_case|capitalize}})
         
-        router.DEL("/{{table.name|singular|camel_case|capitalize}}/:id", Del{{table.name|singular|camel_case|capitalize}})
+        router.DELETE("/{{table.name|singular|camel_case|capitalize}}/:id", Del{{table.name|singular|camel_case|capitalize}})
         
         
         {% endfor %}
@@ -40,7 +40,29 @@ func Index(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	fmt.Fprintf(w, "Index")
 }
 
-//Hello hello world route
-func Hello(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
-	fmt.Fprintf(w, "Hello, %s !\n", ps.ByName("name"))
+{% for table in tables %}
+func Get{{table.name|singular|plural|camel_case|capitalize}}(w http.ResponseWriter, r *http.Request, _ httprouter.Params){
+        fmt.Fprintf(w, "{{table.name}}")
 }
+
+func Get{{table.name|singular|camel_case|capitalize}}(w http.ResponseWriter, r *http.Request, _ httprouter.Params){
+        fmt.Fprintf(w, "{{table.name|singular}}")
+        
+}
+
+func Post{{table.name|singular|plural|camel_case|capitalize}}(w http.ResponseWriter, r *http.Request, _ httprouter.Params){
+        fmt.Fprintf(w, "{{table.name}}")
+}
+
+func Post{{table.name|singular|camel_case|capitalize}}(w http.ResponseWriter, r *http.Request, _ httprouter.Params){
+        fmt.Fprintf(w, "{{table.name}}")
+}
+
+func Put{{table.name|singular|camel_case|capitalize}}(w http.ResponseWriter, r *http.Request, _ httprouter.Params){
+        fmt.Fprintf(w, "{{table.name}}")
+}
+
+func Del{{table.name|singular|camel_case|capitalize}}(w http.ResponseWriter, r *http.Request, _ httprouter.Params){
+        fmt.Fprintf(w, "{{table.name}}")
+}
+{% endfor %}
