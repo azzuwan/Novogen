@@ -5,11 +5,12 @@ import (
 	"fmt"
 	"log"
 	"net/http"        
-	"github.com/julienschmidt/httprouter"
+	"github.com/julienschmidt/httprouter"        
 )
 
 func main() {
-        TestDB()
+
+        initDb()
         
 	router := httprouter.New()        
 	
@@ -37,13 +38,25 @@ func main() {
 }
 
 // Index main route
-func Index(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
+func Index(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {        
 	fmt.Fprintf(w, "Index")
 }
 
 {% for table in tables %}
 func Get{{table.name|plural|camel_case|capitalize}}(w http.ResponseWriter, r *http.Request, _ httprouter.Params){
-        fmt.Fprintf(w, "{{table.name}}")
+        
+        res := sess.Collection("{{table.name}}").Find()
+        var {{table.name|plural|camel_case}} []{{table.name|singular|camel_case|capitalize}}
+        
+	if err := res.All(&{{table.name|plural|camel_case}}); err != nil {
+		log.Fatal(err)
+	}
+	
+	for _, {{table.name|singular|camel_case}} := range {{table.name|plural|camel_case}} {
+                log.Println({{table.name|singular|camel_case}}.{{table.columns[0].Name|singular|camel_case|capitalize}})
+                fmt.Fprintf(w,"%s", {{table.name|singular|camel_case}}.{{table.columns[0].Name|singular|camel_case|capitalize}})
+	}
+        
 }
 
 func Get{{table.name|singular|camel_case|capitalize}}(w http.ResponseWriter, r *http.Request, _ httprouter.Params){
