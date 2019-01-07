@@ -1,0 +1,36 @@
+//Labstack Echo web framework template
+package main
+
+import (
+	"net/http"
+
+	"github.com/labstack/echo"
+)
+
+func main() {
+	e := echo.New()
+	e.GET("/", func(c echo.Context) error {
+		return c.String(http.StatusOK, "Hello, World!")
+	})
+
+	{% for table in tables %}
+	
+	e.GET("/{{table.name}}", func(c echo.Context) error{
+		return c.String(http.StatusOK, "Hello, World!")
+	})
+	e.POST("/{{table.name}}", func(c echo.Context) error{
+		return c.String(http.StatusOK, "Hello, World!")
+	})
+
+	e.PUT("/{{table.name}}", func(c echo.Context) error{
+		return c.String(http.StatusOK, "Hello, World!")
+	})
+    
+    e.DELETE("/{{table.name}}", func(c echo.Context) error{
+		return c.String(http.StatusOK, "Hello, World!")
+	})
+
+	{% %}
+	e.Logger.Fatal(e.Start(":3111"))
+	}
+}
